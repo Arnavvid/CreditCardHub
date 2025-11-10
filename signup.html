@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardHub India | Sign Up</title>
+  
+  <link rel="stylesheet" href="mainpage.css">
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+  </script>
+
+  <style>
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .signup-container {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 420px;
+      max-width: 100%;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 5px solid transparent; 
+      background-clip: padding-box, border-box; 
+      background-origin: border-box; 
+      background-image: linear-gradient(var(--card-bg), var(--card-bg)), var(--settings-border-gradient);
+      background-size: 400% 400%;
+      animation: border-lap-animation 10s linear infinite, fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    .back-link {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        text-decoration: none;
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+    .back-link:hover {
+        color: var(--text-color);
+        background-color: var(--border-color);
+    }
+    .back-link span {
+        transition: all 0.2s ease;
+        display: inline-block;
+        margin-right: 4px;
+        font-weight: 700;
+    }
+    .back-link:hover span {
+        transform: translateX(-3px);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+    }
+    .logo img {
+        height: 50px;
+        border-radius: 15px;
+    }
+    .logo h1 {
+        padding-left: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.5rem;
+        color: var(--text-color);
+        margin: 0;
+    }
+    
+    .signup-container h2 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+    
+    .signup-container p {
+        color: var(--muted-text);
+        margin-bottom: 2rem;
+    }
+
+    .signup-form input[type="text"],
+    .signup-form input[type="email"],
+    .signup-form input[type="password"] {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+        background: var(--card-bg);
+        color: var(--text-color);
+        box-sizing: border-box;
+    }
+
+    .signup-form input[type="text"]:focus,
+    .signup-form input[type="email"]:focus,
+    .signup-form input[type="password"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .signup-form button {
+        width: 100%;
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        font-weight: 700; 
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        margin-top: 1rem;
+    }
+
+    .signup-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+    }
+    
+    .signup-form button:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    }
+    
+    .login-link {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--muted-text);
+    }
+
+    .login-link a {
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    
+    .login-link a:hover {
+        color: #667eea;
+        text-shadow: 0 0 10px rgb(102, 126, 234);
+    }
+
+    .alert-message {
+        position: absolute;
+        bottom: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .alert-message.show {
+        bottom: 1.5rem;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .alert-message.error {
+        background: var(--cons-bg);
+        border: 2px solid var(--cons-border);
+        color: #dc3545;
+    }
+    body.dark-mode .alert-message.error {
+        color: #ff6b6b;
+    }
+
+    .alert-message.success {
+        background: var(--pros-bg);
+        border: 2px solid var(--pros-border);
+        color: #28a745;
+    }
+    body.dark-mode .alert-message.success {
+        color: #38d76e;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="signup-container">
+    
+    <a href="start.html" class="back-link"><span>&larr;</span>Back to Home</a>
+
+    <div class="logo">
+        <img src="images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+        <h1 style="padding-left: 30px; font-family: Arial, Helvetica, sans-serif">CardHub India</h1>
+    </div>
+
+    <h2>Create Account</h2>
+    <p>Join CardHub India today</p>
+    
+    <div id="alertMessage" class="alert-message"></div>
+    
+    <form id="signupForm" class="signup-form">
+      <input type="text" id="fullname" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirm" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    
+    <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <script>
+    const backendUrl = "http://localhost/cardhub/database.php";
+    
+    let alertTimer;
+
+    function showAlert(message, isError = true) {
+        const alertBox = document.getElementById("alertMessage");
+        
+        if (alertTimer) {
+            clearTimeout(alertTimer);
+        }
+
+        alertBox.textContent = message;
+        alertBox.classList.add("show");
+        
+        if (isError) {
+            alertBox.classList.add("error");
+            alertBox.classList.remove("success");
+        } else {
+            alertBox.classList.remove("error");
+            alertBox.classList.add("success");
+        }
+
+        alertTimer = setTimeout(() => {
+            alertBox.classList.remove("show");
+        }, 5000);
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const full_name = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirm = document.getElementById("confirm").value.trim();
+
+      if (password !== confirm) {
+        showAlert("Passwords do not match!", true);
+        return;
+      }
+
+      try {
+        const res = await fetch(backendUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "signup", full_name, email, password })
+        });
+
+        const data = await res.json();
+        console.log("Signup Response:", data);
+
+        if (data.success) {
+          showAlert("Signup successful! Redirecting to login...", false);
+          
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 2000);
+
+        } else {
+          showAlert(data.message || "Server error.", true);
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert("Network or server error occurred.", true);
+      }
+    });
+  </script>
+</body>
+</html>

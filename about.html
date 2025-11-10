@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us - CardHub India</title>
+
+    <link rel="stylesheet" href="guides.css">
+
+    <style>
+        :root {
+            --gradient-main: linear-gradient(135deg, #2A7B9B 0%, #57C785 100%);
+            --header-bg: rgba(255,255,255,0.95);
+            --footer-bg: rgba(255,255,255,0.95);
+            --card-bg: #ffffff;
+            --text-color: #111827;
+            --muted-text: #6b7280;
+            --accent: #2A7B9B;
+            --settings-border-gradient: linear-gradient(90deg, #2A7B9B, #57C785, #2A7B9B);
+            --box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        body.dark-mode {
+            --gradient-main: linear-gradient(135deg, #0f1724 0%, #142a25 100%);
+            --header-bg: rgba(20,20,20,0.95);
+            --footer-bg: rgba(20,20,20,0.95);
+            --card-bg: #1a1a1a;
+            --text-color: #e6e6e6;
+            --muted-text: #9ca3af;
+            --accent: #57C785;
+            --settings-border-gradient: linear-gradient(90deg, #57C785, #2A7B9B, #57C785);
+            --box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            color: var(--text-color);
+            background: var(--gradient-main);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .nav {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            max-width:1200px;
+            margin:0 auto;
+            padding:0.9rem 1rem;
+            gap:1rem;
+        }
+        .logo { display:flex; align-items:center; gap:10px; }
+        .logo img { height:56px; border-radius:12px; }
+        .logo h1 { font-size:1rem; margin:0; font-weight:700; }
+
+        .nav-links { display:flex; list-style:none; gap:1.5rem; margin:0; padding:0; align-items:center; }
+        .nav-links a { text-decoration:none; color:var(--text-color); font-weight:600; transition:color .3s; }
+        .nav-links a:hover { color:var(--accent); }
+
+        .container { max-width:1200px; margin:0 auto; padding:1.5rem; }
+        .hero { display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+        .hero-left { flex:1; min-width:280px; }
+        .hero-title { font-size:2rem; font-weight:700; margin:0.5rem 0; background: linear-gradient(90deg,#ffffff,#e2f6ee); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        body.dark-mode .hero-title { background: linear-gradient(90deg,#57C785,#2A7B9B); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero-subtext { font-size:1.05rem; color:#fff; }
+        body.dark-mode .hero-subtext { color:var(--muted-text); }
+
+        .content-card { background:var(--card-bg); border-radius:16px; padding:2rem; box-shadow:var(--box-shadow); margin:2rem auto 3rem; max-width:1000px; }
+        .content-card p { font-size:1.05rem; line-height:1.7; margin-bottom:1rem; }
+
+        .back-row { text-align:center; margin-top:1rem; }
+        .btn-back { text-decoration:none; color:#fff; background:var(--accent); padding:0.6rem 1rem; border-radius:10px; font-weight:600; }
+
+        @keyframes border-lap { 0% { background-position: 0% 0%; } 100% { background-position: 400% 0%; } }
+        .settings-panel {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            width: 300px;
+            z-index: 999;
+            border: 5px solid transparent;
+            background-clip: padding-box, border-box;
+            background-image: linear-gradient(var(--card-bg), var(--card-bg)), var(--settings-border-gradient);
+            background-size: 400% 400%;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.4s ease, visibility 0.4s;
+        }
+        .settings-panel.visible { visibility: visible; opacity: 1; animation: border-lap 10s linear infinite; }
+
+        .theme-switch { display:flex; justify-content:space-between; align-items:center; margin-top:1rem; }
+        .switch { position:relative; display:inline-block; width:60px; height:34px; }
+        .switch input { opacity:0; width:0; height:0; }
+        .slider { position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:var(--muted-text); transition:.4s; border-radius:34px; }
+        .slider:before { position:absolute; content:""; height:26px; width:26px; left:4px; bottom:4px; background-color:white; transition:.4s; border-radius:50%; }
+        input:checked + .slider { background-color:var(--accent); }
+        input:checked + .slider:before { transform:translateX(26px); }
+
+        footer { background:var(--footer-bg); text-align:center; color:var(--muted-text); padding:1.5rem 0; margin-top:3rem; }
+
+        @media (max-width:768px) {
+            .hero { flex-direction:column; align-items:flex-start; text-align:left; }
+            .hero-right { display:none; }
+        }
+    </style>    
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <img src="images/cardhublogoNoText.png" alt="CardHub India Logo">
+                <h1>CardHub India</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="guides/guides.html" >Guides</a></li>
+                <li><a href="about.html" style="font-weight:700;">About</a></li>
+
+                <li class="dropdown d-none" id="profileNav" style="position:relative;">
+                    <a href="#" id="profileIcon" onclick="toggleDropdown(event)" style="display:flex; align-items:center;">
+                        <img src="images/profile.png" alt="Profile Icon" style="width:32px; height:32px; border-radius:50%; border:1px solid #ccc;">
+                    </a>
+                    <ul id="profileDropdown" style="display:none; position:absolute; right:0; top:40px; background:white; list-style:none; padding:10px; box-shadow:0 4px 8px rgba(0,0,0,0.15); border-radius:8px; min-width:180px;">
+                        <li id="usernameDisplay" style="padding:5px 10px; color:#555;"></li>
+                        <hr style="margin:8px 0;">
+                        <li><a href="profile.html" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Profile</a></li>
+                        <li><a href="#" onclick="logout()" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Logout</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <button id="settingsBtn" style="all:unset; cursor:pointer;">
+                        <img src="images/settings_img.png" alt="Settings Icon" style="width:24px;">
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-left">
+                <span style="display:inline-block;padding:6px 12px;border-radius:999px;color:#fff;background:linear-gradient(90deg,#2A7B9B,#57C785);font-weight:700;">About</span>
+                <h1 class="hero-title">Our Mission: Financial Empowerment</h1>
+                <p class="hero-subtext">Guiding users across India to confidently select and leverage credit cards for maximum rewards and savings.</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="content-card">
+        <p>Our mission at <b>Credit Cards Hub</b> is to empower users across India with deep knowledge and clear guidance so they can confidently select and use credit cards tailored for their lifestyle and financial goals. We understand that credit cards today offer much more than just a line of credit - they are powerful financial tools that, when used wisely, unlock rewards and savings across multiple spending categories including <b>travel, online shopping, forex transactions, and everyday purchases</b>.</p>
+
+        <p>Each card excels in specific areas: <b>Travel cards</b> bring access to exclusive airport lounges, flight discounts, and accelerated rewards for hotel bookings; <b>shopping cards reward</b> the frequent online buyer; <b>forex-friendly cards</b> minimize conversion fees when spending abroad; and <b>reward cards</b> provide cashback or points that make even routine spending more valuable. By helping users identify the best cards for categories like travel, dining, fuel, and entertainment, we guide them toward maximizing benefits and minimizing costs.</p>
+
+        <p>Small percentage savings on daily expenses can add up to <b>substantial amounts over time</b>, especially on larger purchases such as electronics, appliances, or holiday bookings. Strategically using credit cards optimized for different expenses allows users to save money effortlessly while keeping their budget under control.</p>
+
+        <p>In addition to these practical savings, credit cards enable users to enjoy <b>luxury experiences</b> that would otherwise be costly. By accumulating and redeeming reward points, users can access opulent hotel stays or upgrade to business or first-class flights at a fraction of the price. Imagine indulging in a luxurious resort vacation or flying first-class simply by leveraging points earned through everyday spending: a key benefit that transforms credit cards into gateways to exclusive experiences.</p>
+
+        <p>Our mission is to educate users not only on how to pick the right credit cards but also on <b>responsible usage</b> to build strong credit health and avoid pitfalls. We strive to provide timely comparisons, expert advice, and updates on the best credit cards available, ensuring each visitor can make smart financial choices and extract the maximum value from their cards.</p>
+
+        <p style="font-weight:600;color:#2A7B9B;">At CardHub India, we believe that understanding credit cards and harnessing their benefits is the key to financial empowerment. Whether managing small daily expenses or planning grand purchases, our platform is dedicated to helping users save money, unlock extraordinary experiences, and master their financial future with confidence.</p>
+
+        <div class="back-row">
+            <a class="btn-back" href="mainpage.html">← Back to Home</a>
+        </div>
+    </div>
+
+    <div class="settings-panel" id="settingsPanel" aria-hidden="true">
+        <h3 style="margin-bottom:0.5rem;">App Settings</h3>
+        <div class="theme-switch">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <footer>&copy; 2025 CardHub India. All rights reserved.</footer>
+
+    <script>
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        if (localStorage.getItem('cardhub_dark_mode') === 'true' || localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        settingsBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsPanel.classList.toggle('visible');
+            settingsPanel.setAttribute('aria-hidden', !settingsPanel.classList.contains('visible'));
+        });
+
+        document.addEventListener('click', (event) => {
+            const isInside = settingsPanel.contains(event.target);
+            const isBtn = settingsBtn.contains(event.target);
+            if (settingsPanel.classList.contains('visible') && !isInside && !isBtn) {
+                settingsPanel.classList.remove('visible');
+                settingsPanel.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        function applyTheme(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                document.body.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.checked = true;
+                localStorage.setItem('cardhub_dark_mode', 'true');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.body.setAttribute('data-bs-theme', 'light');
+                darkModeToggle.checked = false;
+                localStorage.setItem('cardhub_dark_mode', 'false');
+            }
+        }
+
+        darkModeToggle?.addEventListener('change', (e) => {
+            applyTheme(e.target.checked);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 's' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                const newMode = !document.body.classList.contains('dark-mode');
+                applyTheme(newMode);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const username = localStorage.getItem("username");
+            const loginNav = document.getElementById("loginNav");
+            const signupNav = document.getElementById("signupNav");
+            const profileNav = document.getElementById("profileNav");
+            const usernameDisplay = document.getElementById("usernameDisplay");
+
+            if (username) {
+                if (loginNav) loginNav.style.display = "none";
+                if (signupNav) signupNav.style.display = "none";
+                if (profileNav) profileNav.classList.remove("d-none");
+                if (usernameDisplay) usernameDisplay.textContent = username;
+            } else {
+                if (loginNav) loginNav.style.display = "inline";
+                if (signupNav) signupNav.style.display = "inline";
+                if (profileNav) profileNav.classList.add("d-none");
+            }
+        });
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const dropdown = document.getElementById("profileDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function logout() {
+            localStorage.removeItem("username");
+            localStorage.removeItem("userLoggedIn");
+            window.location.href = "start.html";
+        }
+
+        window.addEventListener("click", function(e) {
+            const dropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.getElementById("profileIcon");
+            if (dropdown && profileIcon && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guides — CardHub India</title>
+
+  <!-- Link to the external stylesheet (place guides.css in same folder) -->
+  <link rel="stylesheet" href="guides.css">
+</head>
+<body data-bs-theme="light">
+
+  <!-- NAV -->
+  <header class="header" role="banner">
+    <nav class="nav" role="navigation" aria-label="Main">
+      <div class="logo">
+        <img src="../images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+        <h1>CardHub India</h1>
+      </div>
+
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="../mainpage.html">Home</a></li>
+        <li role="none"><a role="menuitem" class="active" aria-current="page" href="guides.html">Guides</a></li>
+        <li role="none"><a role="menuitem" href="../about.html">About</a></li>
+
+        <li class="dropdown d-none" id="profileNav" style="position:relative;">
+                    <a href="#" id="profileIcon" onclick="toggleDropdown(event)">
+                        <img src="../images/profile.png" alt="Profile" style="width:32px;height:32px;border-radius:50%;border:1px solid #ccc;">
+                    </a>
+                    <ul id="profileDropdown" style="display:none;position:absolute;right:0;top:40px;background:white;list-style:none;padding:10px;box-shadow:0 4px 8px rgba(0,0,0,0.15);border-radius:8px;min-width:180px;">
+                        <li id="usernameDisplay" style="padding:5px 10px;color:#555;"></li>
+                        <hr>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    </ul>
+                </li>
+                <li>
+
+        <li role="none">
+          <button id="settingsBtn" aria-expanded="false" aria-controls="settingsPanel" title="Settings" style="all:unset;cursor:pointer;">
+            <img src="../images/settings_img.png" alt="Settings" class="settings-icon" onerror="this.src='https://placehold.co/28x28?text=⚙'">
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section" role="region" aria-label="Page header">
+    <div class="container">
+      <span class="badge--accent">Guides</span>
+      <h1>Complete Guides & Loyalty Program Walkthroughs</h1>
+      <p class="lead">Practical tips, earning & redemption strategies, and deep dives on popular hotel and airline programs.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container my-4" role="main">
+    <article class="card p-4 mb-4" aria-labelledby="all-guides-title">
+      <div class="card-body">
+        <h2 id="all-guides-title">All Guides</h2>
+        <p class="meta-note">Click a card to view the full guide.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-top:1rem;">
+          <!-- Hyatt card -->
+          <div class="card" role="article">
+            <div class="card-body">
+              <h3>World of Hyatt</h3>
+
+              <!-- image fills the box and stays consistent with other cards -->
+              <div class="section-img-placeholder img-tilt" aria-hidden="true">
+                <img src="../images/hyatt.png" alt="World of Hyatt">
+              </div>
+              <p class="meta-note">Earn & redeem Hyatt points, elite tips, transfer partners and award examples.</p>
+              <div style="margin-top:.6rem;">
+                <a class="btn-primary" href="hyatt.html">Read Guide</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Marriott card -->
+          <div class="card" role="article">
+            <div class="card-body">
+              <h3>Marriott Bonvoy</h3>
+
+              <div class="section-img-placeholder img-tilt" aria-hidden="true">
+                <img src="../images/marriott.png" alt="Marriott Bonvoy" >
+              </div>
+              <p class="meta-note">Tiers, breakfast rules, lounge access & STARS/Luminous notes.</p>
+              <div style="margin-top:.6rem;">
+                <a class="btn-primary" href="marriott.html">Read Guide</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITC card -->
+          <div class="card" role="article">
+            <div class="card-body">
+              <h3>ITC</h3>
+              <div class="section-img-placeholder img-tilt" aria-hidden="true">
+                <img src="../images/itc.jpg" alt="ITC" >
+              </div>
+              <p class="meta-note">How to earn points, use elite benefits and maximize redemption value.</p>
+              <div style="margin-top:.6rem;">
+                <a class="btn-primary" href="itc.html">Read Guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    
+  </main>
+
+  <!-- Settings panel -->
+  <div class="settings-panel" id="settingsPanel" aria-hidden="true" role="dialog" aria-label="Settings panel">
+    <h4>Settings</h4>
+    <div style="margin-bottom:.6rem; text-align:center; color:var(--muted-text);">Appearance</div>
+
+    <div class="theme-switch">
+      <span>Dark Mode</span>
+      <label class="switch" title="Toggle dark mode">
+        <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div style="margin-top:1rem; font-size:.92rem; color:var(--muted-text);">Tip: press <kbd>Ctrl/Cmd + S</kbd> to toggle theme.</div>
+  </div>
+
+  <!-- Card focus modal (demo) -->
+  <div class="card-focus-modal" id="cardModal" role="dialog" aria-hidden="true" aria-label="Image preview">
+    <img id="cardModalImg" alt="Card preview">
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2025 CardHub India. All rights reserved.</p>
+  </footer>
+
+  <!-- JS: settings toggle, dark mode, rotate icon, demo nav login handling -->
+  <script src="guides.js" defer></script>
+
+</body>
+</html>

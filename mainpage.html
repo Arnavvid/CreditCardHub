@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardHub India - Find Your Perfect Credit Card</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <img src="images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+            <h1 style="padding-left: 30px">CardHub India</h1>        
+        </div>
+
+        <ul class="nav-links">
+            <li><a onclick="showSection('home')" style="font-weight: 700;">Home</a></li>
+            <li><a href="guides/guides.html">Guides</a></li>
+            <li><a href="about.html">About</a></li>
+
+            <li class="dropdown d-none" id="profileNav" style="position: relative;">
+                <a href="#" id="profileIcon" onclick="toggleDropdown(event)" style="display: flex; align-items: center;">
+                    <img src="images/profile.png" alt="Profile Icon" style="width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 1px solid #ccc;">
+                </a>
+
+                <ul class="dropdown-menu" id="profileDropdown" style="display:none; position:absolute; right:0; top:40px; background:white; list-style:none; padding:10px; box-shadow:0 4px 8px rgba(0,0,0,0.15); border-radius:8px; min-width:180px;">
+                    <li id="usernameDisplay" style="padding:5px 10px; font-size:14px; color:#555;"></li>
+                    <hr style="margin:8px 0;">
+                    <li><a href="profile.html" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Profile</a></li>
+                    <li><a href="#" onclick="logout()" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Logout</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <button id="settingsBtn" style="all:unset;cursor:pointer;">
+                    <img src="images/settings_img.png" alt="Settings Icon" class="settings-icon">
+                </button>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Find Your Perfect Credit Card</h1>
+            <p>Compare credit cards from leading Indian and international banks. Find the best rewards, lowest fees, and perfect features for your lifestyle.</p>
+        </section>
+
+        <section class="search-section">
+            <div class="filters">
+                <div class="filter-group">
+                    <select id="bankFilter">
+                        <option value="">All Banks</option>
+                        <option value="hdfc">HDFC Bank</option>
+                        <option value="sbi">State Bank of India</option>
+                        <option value="icici">ICICI Bank</option>
+                        <option value="axis">Axis Bank</option>
+                        <option value="kotak">Kotak Mahindra</option>
+                        <option value="yes">YES Bank</option>
+                        <option value="indusind">IndusInd Bank</option>
+                        <option value="amex">American Express</option>
+                        <option value="citibank">Citibank</option>
+                        <option value="hsbc">HSBC</option>
+                        <option value="standard-chartered">Standard Chartered</option>
+                        <option value="rbl">RBL Bank</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="incomeFilter">
+                        <option value="">Any Income</option>
+                        <option value="25000">₹25,000+/month</option>
+                        <option value="50000">₹50,000+/month</option>
+                        <option value="100000">₹1,00,000+/month</option>
+                        <option value="300000">₹3,00,000+/month</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="feeFilter">
+                        <option value="">Any Annual Fee</option>
+                        <option value="free">Free Lifetime (₹0)</option>
+                        <option value="low">Under ₹1,000</option>
+                        <option value="medium">₹1,000 - ₹5,000</option>
+                        <option value="high">₹5,000 - ₹10,000</option>
+                        <option value="vhigh">Above ₹10,000</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="sortFilter">
+                        <option value="default">Default Sort</option>
+                        <option value="fee-asc">Annual Fee (Low to High)</option>
+                        <option value="reward-asc">Reward Rate (Low to High)</option>
+                        <option value="fee-desc">Annual Fee (High to Low)</option>
+                        <option value="reward-desc">Reward Rate (High to Low)</option>
+                    </select>
+                </div>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search cards...">
+            </div>
+
+            <div class="categories">
+                <button class="category-btn active" onclick="filterByCategory('all')">All Cards</button>
+                <button class="category-btn" onclick="filterByCategory('travel')">Travel</button>
+                <button class="category-btn" onclick="filterByCategory('cashback')">Cashback</button>
+                <button class="category-btn" onclick="filterByCategory('fuel')">Fuel</button>
+                <button class="category-btn" onclick="filterByCategory('online')">Online Shopping</button>
+                <button class="category-btn" onclick="filterByCategory('forex')">Forex</button>
+                <button class="category-btn" onclick="filterByCategory('premium')">Premium</button>
+                <button class="category-btn" onclick="filterByCategory('food')">Food</button>
+                <button class="category-btn" onclick="filterByCategory('hni')">HNI/Ultra Premium</button>
+                <button class="category-btn" onclick="filterByCategory('ltf')">LTF</button>
+            </div>
+        </section>
+
+        <div class="cards-grid" id="cardsGrid">
+        </div>
+
+        <div class="comparison-table" id="comparisonSection"> 
+            <h2 style="margin-bottom: 2rem; text-align: center;">Compare Cards</h2>
+            
+            <div class="compare-queue-display" id="compareQueueDisplay">
+                <h3 style="margin-bottom: 1rem;">Select Cards (upto 3 cards)</h3>
+                <div id="selectedCardsPills" style="min-height: 2rem; margin-bottom: 1rem;">
+                    </div>
+                <button class="apply-btn" id="compareNowBtn" onclick="compareCards()" disabled>
+                    Compare Now (0/3 Selected)
+                </button>
+            </div>
+
+            <div class="comparison-results-container hidden" id="comparisonResults">
+                </div>
+        </div>
+    </div>
+
+
+    <button id="compareFloatBtn" class="compare-float-btn">
+        <i class="fas fa-balance-scale-right"></i>
+        Compare Cards
+    </button>
+
+
+
+    <footer class="footer">
+        <p>&copy; 2025 CardHub India. Compare credit cards responsibly. Terms and conditions apply.</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Disclaimer: Information is for comparison purposes only. Please verify details with respective banks.</p>
+    </footer>
+    
+    <div class="settings-panel" id="settingsPanel">
+        <h1>Settings</h1>
+        <div class="theme-switch">
+            <label for="darkModeToggle">Dark Mode</label>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    
+    <div id="cardFocusModal" class="card-focus-modal" onclick="hideCardFocus()">
+        <span class="card-focus-close" onclick="hideCardFocus()">&times;</span>
+        <div class="card-focus-modal-content">
+            <img id="modalCardImage" src="" alt="Focused Card Image">
+        </div>
+    </div>
+
+    <script>
+        const backendUrl = 'http://localhost/cardhub/database.php';
+        let userId;
+        let compareQueue = [];
+
+        let creditCards = [];
+
+        function getNumericRewardRate(rewardRate) {
+            if (!rewardRate || rewardRate === 'N/A') return 0;
+            const numbers = rewardRate.match(/(\d+(\.\d+)?)/g) || [0];
+            return Math.max(...numbers.map(Number));
+        }
+
+
+        function calculateFeeValue(card) {
+            const feeString = (card.annualFee || 'free').toLowerCase();
+            let feeValue = null; 
+
+            if (feeString.includes('nil') || feeString.includes('free')) {
+                feeValue = 0;
+            } else {
+                const match = feeString.match(/₹([\d,]+)/);
+                if (match && match[1]) {
+                    feeValue = parseInt(match[1].replace(/,/g, ''), 10);
+                }
+            }
+            card.annualFeeValue = feeValue;
+        }
+        
+        let filteredCards = [];
+        let currentCategory = 'all';
+
+        function renderCards(cards) {
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = '';
+
+            cards.forEach(card => {
+                const cardRating = parseFloat(card.rating);
+                const isCompared = compareQueue.includes(card.name);
+                
+                const logoPath = `bank_logos/${card.bank}_logo.png`;
+                const imagePath = card.image_url || `cards/${card.card_id}.jpg`;
+                const starsHTML = !isNaN(cardRating) && cardRating > 0 && cardRating <= 5
+                    ? `<div class="stars">${'★'.repeat(Math.floor(cardRating))}${'☆'.repeat(5 - Math.floor(cardRating))}</div><span>${cardRating.toFixed(1)}/5</span>`
+                    : '<span>N/A</span>';
+
+                const minIncomeDisplay = card.minIncome !== null && card.minIncome > 0 ? `₹${(Number(card.minIncome) / 1000).toFixed(0)}K/month` : 'N/A';
+                
+                const cardElement = document.createElement('div');
+                cardElement.className = `card ${isCompared ? 'is-compared' : ''}`;
+                
+                cardElement.innerHTML = `
+                    ${isCompared ? '<div class="compare-icon-badge">IN COMPARE</div>' : ''}
+                    
+                    <button class="card-flip-btn" aria-label="Flip card to see image">
+                        <img src="images/eye.png" alt="Flip card icon" onerror="this.style.display='none'">
+                    </button>
+                    
+                    <div class="card-inner-container">
+                        
+                        <div class="card-front">
+                            <div class="card-header">
+                                <div class="card-name">${card.name}</div>
+                            </div>
+                            <img class="bank-logo" src="${logoPath}" alt="${card.bankName} Logo">
+                            
+                            <div class="rating">
+                                ${starsHTML}
+                            </div>
+
+                            <div class="card-features">
+                                ${Array.isArray(card.features) ? card.features.map(feature => `
+                                    <div class="feature">
+                                        <span class="feature-icon">✓</span>
+                                        <span>${feature}</span>
+                                    </div>
+                                `).join('') : ''}
+                            </div>
+
+                            <div class="fees-section">
+                                <div class="fees-title">Fees & Charges</div>
+                                <table class="fees-table">
+                                    <tr>
+                                        <th>Annual Fee:</th>
+                                        <td>${card.annualFee || 'N/A'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Joining Bonus:</th>
+                                        <td>${card.joinBonus || 'N/A'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reward Rate:</th>
+                                        <td>${card.rewardRate || 'N/A'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Min Income:</th>
+                                        <td>${minIncomeDisplay}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="pros-cons">
+                                <div class="pros">
+                                    <h4>✓ Pros</h4>
+                                    <ul>
+                                        ${Array.isArray(card.pros) ? card.pros.map(pro => `<li>${pro}</li>`).join('') : ''}
+                                    </ul>
+                                </div>
+                                <div class="cons">
+                                    <h4>✗ Cons</h4>
+                                    <ul>
+                                        ${Array.isArray(card.cons) ? card.cons.map(con => `<li>${con}</li>`).join('') : ''}
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="card-actions">
+                                <button class="apply-btn" data-card-id="${card.card_id}" data-apply-link="${card.applyLink}">
+                                    Apply Now
+                                </button>
+                                <button class="compare-btn ${isCompared ? 'remove' : ''}" onclick="addToCompare('${card.name}')">
+                                    ${isCompared ? 'Remove' : 'Add to Compare'}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-back" onclick="showCardFocus('${card.card_id}')">
+                            <img src="${imagePath}" alt="${card.name} Card Image" onerror="this.src='https://placehold.co/300x180/eee/ccc?text=Card+Image'; this.style.border='1px solid #ccc';">
+                        </div>
+                    </div>
+                `;
+                cardsGrid.appendChild(cardElement);
+            });
+        }
+        
+        function addToCompare(cardName) {
+            const index = compareQueue.indexOf(cardName);
+
+            if (index > -1) {
+                removeFromCompare(cardName);
+            }
+            else if (compareQueue.length < 3) {
+                compareQueue.push(cardName);
+            }
+            else {
+                console.error('You can only compare a maximum of 3 cards. Please remove one card before adding another.');
+                return;
+            }
+            
+            applyFilters();
+            updateCompareUI();
+        }
+
+        function removeFromCompare(cardName) {
+            compareQueue = compareQueue.filter(name => name !== cardName);
+            
+            if (compareQueue.length < 2) {
+                document.getElementById('comparisonResults').classList.add('hidden');
+            }
+            
+            applyFilters();
+            updateCompareUI();
+        }
+
+        function updateCompareUI() {
+            const displayDiv = document.getElementById('selectedCardsPills');
+            const compareBtn = document.getElementById('compareNowBtn');
+            
+            let pillsHTML = '';
+            
+            compareQueue.forEach(cardName => {
+                pillsHTML += `
+                    <div class="queue-card-pill">
+                        ${cardName}
+                        <span class="remove-x" onclick="removeFromCompare('${cardName}')">x</span>
+                    </div>
+                `;
+            });
+
+            displayDiv.innerHTML = pillsHTML;
+
+            const count = compareQueue.length;
+            compareBtn.textContent = `Compare Now (${count}/3 Selected)`;
+            
+            if (count >= 2 && count <= 3) {
+                compareBtn.disabled = false;
+                compareBtn.classList.remove('apply-btn');
+                compareBtn.classList.add('compare-btn');
+            }
+            else {
+                compareBtn.disabled = true;
+                compareBtn.classList.remove('compare-btn');
+                compareBtn.classList.add('apply-btn');
+                document.getElementById('comparisonResults').classList.add('hidden');
+            }
+        }
+
+        const COMPARISON_KEYS = [
+            { key: 'bankName', label: 'Bank', isArray: false },
+            { key: 'category', label: 'Categories', isArray: true },
+            { key: 'annualFee', label: 'Annual Fee', isArray: false },
+            { key: 'joinBonus', label: 'Joining Bonus', isArray: false },
+            { key: 'rewardRate', label: 'Reward Rate', isArray: false },
+            { key: 'minIncome', label: 'Min Income', isArray: false, 
+                formatter: (val) => (val !== null && val > 0) ? `₹${(Number(val) / 1000).toFixed(0)}K/month` : 'N/A' 
+            },
+            { key: 'features', label: 'Key Features', isArray: true },
+            { key: 'rating', label: 'User Rating', isArray: false, 
+                formatter: (val) => val ? `${Number(val).toFixed(1)}/5` : 'N/A' 
+            },
+        ];
+
+        function compareCards() {
+            if (compareQueue.length < 2 || compareQueue.length > 3) {
+                console.error('Please select two or three cards to compare.');
+                return;
+            }
+
+            const selectedCards = compareQueue.map(cardName => 
+                creditCards.find(c => c.name === cardName)
+            ).filter(c => c); 
+            
+            if (selectedCards.length < 2) return;
+
+            try {
+                const cardIdsToLog = selectedCards.map(c => c.card_id);
+                logCardComparison(cardIdsToLog);
+            } catch (e) {
+                console.error("Failed to log comparison", e);
+            }
+
+            const commonFeatures = [];
+            const differences = [];
+
+            COMPARISON_KEYS.forEach(item => {
+                const values = selectedCards.map(card => item.isArray ? (card[item.key] || []) : card[item.key]);
+                
+                const formattedValues = values.map(val => 
+                    item.formatter ? item.formatter(val) : (Array.isArray(val) ? val.join(', ') : val)
+                );
+
+                const isCommon = values.every((val, i, arr) => {
+                    if (i === 0) return true;
+                    return JSON.stringify(val) === JSON.stringify(arr[0]);
+                });
+
+                if (isCommon) {
+                    commonFeatures.push({ label: item.label, value: formattedValues[0] });
+                }
+                else {
+                    differences.push({ label: item.label, values: formattedValues });
+                }
+            });
+            
+            differences.push({ label: 'Pros', values: selectedCards.map(card => Array.isArray(card.pros) ? card.pros.join('; ') : '') });
+            differences.push({ label: 'Cons', values: selectedCards.map(card => Array.isArray(card.cons) ? card.cons.join('; ') : '') });
+
+            const resultsDiv = document.getElementById('comparisonResults');
+            let commonHTML = `<div class="comparison-group"><h3>Common Features</h3><ul class="feature-list">`;
+            let diffHTML = `<div class="differences-table-container"><h3>Differences</h3>`;
+            
+            commonHTML += commonFeatures.map(feature => 
+                `<li><strong>${feature.label}:</strong> ${feature.value}</li>`
+            ).join('');
+            commonHTML += `</ul></div>`;
+            
+            diffHTML += `<table class="differences-table">`;
+            
+            const headerNames = selectedCards.map(card => `<th>${card.name}</th>`).join('');
+            diffHTML += `<thead><tr><th>Feature</th>${headerNames}</tr></thead>`;
+            diffHTML += `<tbody>`;
+
+            diffHTML += differences.map(diff => {
+                const valueCells = diff.values.map(val => `<td class="card-value">${val}</td>`).join('');
+                return `<tr>
+                            <td class="feature-label">${diff.label}</td>
+                            ${valueCells}
+                        </tr>`;
+            }).join('');
+
+            diffHTML += `</tbody></table></div>`;
+
+            resultsDiv.innerHTML = commonHTML + diffHTML;
+            resultsDiv.classList.remove('hidden');
+
+            window.scrollTo({ top: resultsDiv.offsetTop - 100, behavior: 'smooth' });
+        }
+        
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const activeBtn = document.querySelector(`.category-btn[onclick*="'${category}'"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+            
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const bankFilter = document.getElementById('bankFilter').value;
+            const incomeFilter = document.getElementById('incomeFilter').value;
+            const feeFilter = document.getElementById('feeFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sortFilter = document.getElementById('sortFilter').value; 
+
+            filteredCards = creditCards.filter(card => {
+                const categoryMatch = currentCategory === 'all' || (Array.isArray(card.category) && card.category.includes(currentCategory));
+                const bankMatch = !bankFilter || card.bank === bankFilter;
+                
+                const incomeValue = card.minIncome !== null ? parseInt(card.minIncome) : 0;
+                const incomeMatch = !incomeFilter || incomeValue === 0 || incomeValue >= parseInt(incomeFilter);
+                
+                const feeValue = card.annualFeeValue !== null ? card.annualFeeValue : Infinity; 
+                let feeMatch = true;
+
+                if (feeFilter === 'free') {
+                    feeMatch = feeValue === 0;
+                }
+                else if (feeFilter === 'low') {
+                    feeMatch = feeValue > 0 && feeValue <= 1000;
+                }
+                else if (feeFilter === 'medium') {
+                    feeMatch = feeValue > 1000 && feeValue < 5000; 
+                }
+                else if (feeFilter === 'high') {
+                    feeMatch = feeValue >= 5000 && feeValue <= 10000; 
+                }
+                else if (feeFilter === 'vhigh'){
+                    feeMatch = feeValue > 10000;
+                }
+                
+                const searchMatch = !searchTerm || 
+                    card.name.toLowerCase().includes(searchTerm) ||
+                    card.bankName.toLowerCase().includes(searchTerm) ||
+                    (Array.isArray(card.features) && card.features.some(feature => feature.toLowerCase().includes(searchTerm)));
+
+                return categoryMatch && bankMatch && incomeMatch && feeMatch && searchMatch;
+            });
+
+            filteredCards.sort((a, b) => {
+                if (sortFilter === 'fee-asc') {
+                    return (a.annualFeeValue === null ? Infinity : a.annualFeeValue) - (b.annualFeeValue === null ? Infinity : b.annualFeeValue);
+                }
+                else if (sortFilter === 'reward-desc') {
+                    return getNumericRewardRate(b.rewardRate) - getNumericRewardRate(a.rewardRate);
+                }
+                else if (sortFilter === 'fee-desc') {
+                    return (b.annualFeeValue === null ? Infinity : b.annualFeeValue)- (a.annualFeeValue === null ? Infinity : a.annualFeeValue);
+                }
+                else if (sortFilter === 'reward-asc') {
+                    return getNumericRewardRate(a.rewardRate)- getNumericRewardRate(b.rewardRate);
+                }
+                
+                return 0;
+            });
+
+            renderCards(filteredCards);
+        }
+        
+        function showSection(section) {
+            const comparisonSection = document.getElementById('comparisonSection');
+
+            if (section === 'compare') {
+                updateCompareUI();
+                window.scrollTo({ top: comparisonSection.offsetTop - 100, behavior: 'smooth' });
+                
+            }
+            if (section !== 'compare') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        const modal = document.getElementById('cardFocusModal');
+        const modalImg = document.getElementById('modalCardImage');
+
+        function showCardFocus(cardId) {
+            const card = creditCards.find(c => c.card_id === cardId);
+            if (!card) return;
+            
+            const imagePath = card.image_url || `cards/${card.card_id}.jpg`;
+            modalImg.src = imagePath;
+            modalImg.alt = `${card.name} Card Image`;
+            modal.style.display = "flex";
+            
+            event.stopPropagation();
+        }
+
+        function hideCardFocus() {
+            modal.style.display = "none";
+        }
+        
+        document.getElementById('modalCardImage').addEventListener('click', (event) => {
+             event.stopPropagation();
+        });
+
+
+        async function trackCardClick(cardId) {
+            const userToTrack = userId || 'anonymous';
+
+            if (userToTrack === 'anonymous') {
+                console.log("Tracking click anonymously.");
+            }
+
+            const formData = new FormData();
+            formData.append('action', 'click');
+            formData.append('user_id', userToTrack);
+            formData.append('card_id', cardId);
+
+            try {
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    console.log('Click tracked successfully:', data);
+                } else {
+                    console.error('Failed to track click:', data.error);
+                }
+            } catch (error) {
+                console.error('Error sending click tracking request:', error);
+            }
+        }
+
+
+        document.getElementById('bankFilter').addEventListener('change', applyFilters);
+        document.getElementById('incomeFilter').addEventListener('change', applyFilters);
+        document.getElementById('feeFilter').addEventListener('change', applyFilters);
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            applyFilters();
+            logSearchTerm(e.target.value);
+        });
+        
+        document.getElementById('sortFilter').addEventListener('change', applyFilters);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await fetchAllCards(); 
+            
+            filterByCategory('all');
+            updateCompareUI();
+            
+            document.getElementById('cardsGrid').addEventListener('click', function(event) {
+                const applyBtn = event.target.closest('.apply-btn');
+                
+                if (applyBtn) {
+                    const cardId = applyBtn.dataset.cardId;
+                    const applyLink = applyBtn.dataset.applyLink;
+                    
+                    if (cardId && applyLink) {
+                        trackCardClick(cardId);
+                        window.open(applyLink, '_blank');
+                    }
+                }
+            });
+
+            const username = localStorage.getItem("username");
+            userId = localStorage.getItem("cardhub_user_id");
+            
+            const profileNav = document.getElementById("profileNav");
+            const usernameDisplay = document.getElementById("usernameDisplay");
+
+            if (username && userId) {
+                profileNav.classList.remove("d-none");
+                usernameDisplay.textContent = username;
+            } else {
+                profileNav.classList.add("d-none");
+            }
+        });
+
+        async function fetchAllCards() {
+            try {
+                const response = await fetch(`${backendUrl}?action=getAllCards`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    result.cards.forEach(card => calculateFeeValue(card));
+                    creditCards = result.cards;
+                } else {
+                    console.error('Failed to fetch cards:', result.message);
+                    alert('Error: Could not load card data. Please refresh.');
+                }
+            } catch (error) {
+                console.error('Error fetching card data:', error);
+            }
+        }
+
+
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const compareFloatBtn = document.getElementById('compareFloatBtn');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.toggle('visible');
+        });
+
+        document.addEventListener('click', (event) => {
+            const isClickInsidePanel = settingsPanel.contains(event.target);
+            const isClickOnButton = settingsBtn.contains(event.target);
+
+            if (settingsPanel.classList.contains('visible') && !isClickInsidePanel && !isClickOnButton) {
+                settingsPanel.classList.remove('visible');
+            }
+        });
+
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {    
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        
+        compareFloatBtn.addEventListener('click', () => {
+            showSection('compare');
+        });
+
+        
+        $(document).ready(function() {
+            $('#cardsGrid').on('click', '.card-flip-btn', function() {
+                $(this).siblings('.card-inner-container').toggleClass('is-flipped');
+            });
+        });
+
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function logout() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("cardhub_user_id");
+        window.location.href = "start.html";
+    }
+
+  window.addEventListener("click", function(e) {
+    const dropdown = document.getElementById("profileDropdown");
+    const profileIcon = document.getElementById("profileIcon");
+    if (profileIcon && !profileIcon.contains(e.target) && dropdown && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+
+
+    let searchDebounceTimeout;
+
+    function logSearchTerm(term) {
+        if (!term || term.length < 3) return; 
+        clearTimeout(searchDebounceTimeout);
+        searchDebounceTimeout = setTimeout(() => {
+            const formData = new FormData();
+            formData.append('action', 'logSearch');
+            formData.append('search_term', term);
+
+            fetch(backendUrl, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    console.log('Search logged:', term);
+                }
+            })
+            .catch(console.error);
+        }, 1000);
+    }
+    
+    async function logCardComparison(cardIds) {
+        const formData = new FormData();
+        formData.append('action', 'logComparison');
+        formData.append('card_ids', JSON.stringify(cardIds)); 
+
+        try {
+            const response = await fetch(backendUrl, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            if(data.success) {
+                console.log('Comparison logged:', cardIds);
+            } else {
+                console.error('Failed to log comparison:', data.message);
+            }
+        } catch (error) {
+            console.error('Error logging comparison:', error);
+        }
+    }
+    </script>
+
+</body>
+</html>

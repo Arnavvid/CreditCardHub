@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ITC Hotels — Complete Guide - CardHub India</title>
+
+  <!-- Bootstrap & AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Use the shared guides CSS -->
+  <link rel="stylesheet" href="guides.css">
+
+  <style>
+    /* Page-specific styling */
+    .page-hero {
+      border-radius: 12px;
+      padding: 2rem;
+      background: linear-gradient(180deg, var(--bg-gradient-start, #f7f8fb), var(--bg-gradient-end, #ffffff));
+      margin-bottom: 2rem;
+      display:flex;
+      gap:1.25rem;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .hero-left { max-width:75%; }
+    .hero-badge { display:inline-block; padding:6px 12px; border-radius:999px; background:linear-gradient(45deg,#0ea5a3,#06b6d4); color:#fff; font-weight:700; }
+
+    /* Custom badge style for itc */
+    .badge-itc { 
+    background: linear-gradient(90deg,#0ea5a3,#06b6d4); 
+    color:#fff; 
+    padding:6px 12px; 
+    border-radius:999px; 
+    font-weight:700; 
+    }
+
+    .section-img-placeholder {
+      width:100%;
+      height:320px;
+      border-radius:12px;
+      background: linear-gradient(180deg,#eef2ff,#f6f7fb);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#6b7280;
+      font-weight:700;
+      margin-bottom:1rem;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.04);
+    }
+    body.dark-mode .section-img-placeholder {
+      background: linear-gradient(180deg,#1f2937,#111827);
+      color:#cbd5e1;
+    }
+
+    .content-section { margin-bottom: 3rem; } /* breathing space between articles */
+
+    .img-tilt { transition: transform .45s cubic-bezier(.2,.9,.3,1); }
+    .img-tilt:hover { transform: translateY(-6px) scale(1.01); }
+
+    .mini-card { border-radius:12px; padding:1rem; background:var(--card-bg); border:1px solid var(--border-color); box-shadow:var(--box-shadow); }
+    .meta-note { color:var(--muted-text); font-size:0.95rem; margin-top:.5rem; }
+
+    .back-btn { display:inline-block; margin-top:22px; transition: transform .12s ease, box-shadow .12s ease; }
+    .back-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+
+    /* subtle header animation */
+    .fade-in-up { animation: fadeInUp .6s ease both; }
+    @keyframes fadeInUp { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:none;} }
+
+    /* responsive tweaks */
+    @media (max-width:768px) {
+      .hero-left { max-width:100%; }
+      .section-img-placeholder { height:220px; }
+    }
+
+  </style>
+</head>
+<body data-bs-theme="light">
+  <!-- NAV -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <img src="../images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+        <h1>CardHub India</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="../mainpage.html">Home</a></li>
+        <li><a href="guides.html" style="font-weight:700;">Guides</a></li>
+        <li><a href="../about.html">About</a></li>
+
+        <li>
+          <button id="settingsBtn" style="all:unset;cursor:pointer;">
+            <img src="../images/settings_img.png" alt="Settings Icon" class="settings-icon" style="width:28px; height:28px;">
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section text-white text-center py-5">
+    <div class="container" data-aos="fade-down">
+      <span class="badge-itc">Hotel Guide</span>
+      <h1 class="display-5 fw-bold mt-3">ITC — Complete Guide</h1>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="container my-5">
+
+    <!-- Overview -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Overview</h2>
+
+        <div class="section-img-placeholder img-tilt" id="img-overview" data-aos="zoom-in">
+          <img src ="ITC/1.png" alt="ITC Hotels Building" class="img-fluid rounded" style="max-height:320px; object-fit:cover;">
+        </div>
+
+        <p data-aos="fade-in">
+          ITC Hotels is a prominent Indian hotel group with a portfolio spanning luxury, upscale and business hotels (replace with accurate brand list and descriptions).
+          This guide compiles program details, dining & breakfast policies, corporate event benefits, membership/club information, and tips for maximising stays in India.
+        </p>
+
+        <div class="row mt-3 g-3">
+          <div class="col-md-4" data-aos="fade-right">
+            <div class="mini-card">
+              <div class="stat">India-first</div>
+              <div class="text-muted small">Premium Indian hospitality brands</div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="mini-card">
+              <div class="stat">Luxury • Business</div>
+              <div class="text-muted small">Resorts, city hotels, business hotels</div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-left" data-aos-delay="160">
+            <div class="mini-card">
+              <div class="stat">Dining focus</div>
+              <div class="text-muted small">Strong F&B offerings & culinary experiences</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Brands -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">ITC Brands </h2>
+
+        <div class="row g-3">
+          <div class="col-lg-8" data-aos="fade-in">
+            <ul>
+              <li>ITC Luxury Collection — flagship luxury properties</li>
+              <li>Welcomhotel — upscale city hotels</li>
+              <li>Fortune (or affiliate brands) — business & midscale (confirm exact ownership/affiliations)</li>
+              <li>Resort properties — leisure-focused, signature experiences</li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-left">
+            <div class="section-img-placeholder" id="img-brands">
+              <img src="ITC/3 col.jpg" alt="ITC Hotels Various Brands" class="img-fluid rounded" style="max-height:320px; object-fit:cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Loyalty / Club (placeholder) -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Loyalty / Club Options</h2>
+
+        <p data-aos="fade-in">
+          If ITC runs a membership or club (e.g., Club ITC / One — replace with exact program name and terms), include exact earning rates, welcome offers, and how to register.
+          Below is the suggested structure — replace the placeholders with accurate numbers and terms from ITC’s official program.
+        </p>
+
+        <div class="row mt-3 g-3">
+          <div class="col-md-6" data-aos="fade-right">
+            <h6 class="fw-semibold">What to include</h6>
+            <ul>
+              <li>How to join & sign-up URL</li>
+              <li>Base earning — points per ₹ spent (room, F&B, spa if applicable)</li>
+              <li>Elite tiers (if any), thresholds and benefits</li>
+              <li>Expiry rules and points transfer options (if available)</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-left">
+            <div class="mini-card">
+              <strong>Note</strong>
+              <p class="small mb-0 meta-note">I’ve left placeholders above — paste the exact program copy and numbers here for accuracy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    
+
+    <!-- How to redeem -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">How to Redeem — Night, F&B, Experiences</h2>
+        <div class="table-responsive mt-3" data-aos="fade-up">
+          <table class="table table-bordered">
+            <thead class="table-light">
+              <tr><th>Redemption</th><th>Points / Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Standard free night (example)</td><td>1 GP = ₹1</td></tr>
+              <tr><td>Dining voucher</td><td>1 GP = ₹1</td></tr>
+              <tr><td>Spa credit</td><td>1 GP = ₹1</td></tr>
+            </tbody>
+          </table>
+
+          <p data-aos="fade-in">Green Points(GP) never expire and have a universal value of ₹1</p>
+
+        </div>
+
+      </div>
+    </article>
+
+
+
+    <!-- Corporate, MICE & Events -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Corporate & MICE Benefits</h2>
+
+        <p data-aos="fade-in">ITC properties have a strong Meetings, Incentives, Conferences & Exhibitions (MICE) business. Include common negotiation points below:</p>
+
+        <ul data-aos="fade-in">
+          <li>Group booking discounts & negotiated room rates</li>
+          <li>Event F&B credits and waived meeting room charges</li>
+          <li>Potential event-point earning on qualifying spend</li>
+        </ul>
+
+        <div class="section-img-placeholder" id="img-mice" data-aos="zoom-in">
+          <img src="ITC/2.png" alt="ITC Hotels Conference Room" class="img-fluid rounded" style="max-height:320px; object-fit:cover;">
+        </div>
+      </div>
+    </article>
+
+    <!-- Practical tips -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Practical Tips for Indian Travellers</h2>
+
+        <ul data-aos="fade-in">
+          <li>Always add membership number at booking / check-in to ensure crediting of nights & points.</li>
+          <li>For events, ask the sales team about points & credit promotions before signing contracts.</li>
+          <li>Stack bank/card transfer bonuses with promotions.</li>
+          <li>Confirm breakfast & welcome amenity policies at the specific property.</li>
+        </ul>
+
+        <div class="text-center">
+          <a href="guides.html" class="btn btn-primary back-btn" data-aos="fade-up" data-aos-delay="80">← Back to All Guides</a>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="text-center text-muted mt-4">&copy; 2025 CardHub India. All rights reserved.</p>
+  </footer>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <h4>Settings</h4>
+    <div class="theme-switch" style="margin-top:10px;">
+      <span>Dark Mode</span>
+      <label class="switch" title="Toggle dark mode">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+    // Theme + settings logic (same pattern used on other guides)
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const darkToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        body.classList.add('dark-mode');
+        body.setAttribute('data-bs-theme', 'dark');
+        if (darkToggle) darkToggle.checked = true;
+      } else {
+        body.classList.remove('dark-mode');
+        body.setAttribute('data-bs-theme', 'light');
+        if (darkToggle) darkToggle.checked = false;
+      }
+    }
+
+    // Load stored preference
+    try {
+      const stored = localStorage.getItem('cardhub_dark_mode');
+      applyTheme(stored === 'true');
+    } catch (e) {
+      applyTheme(false);
+    }
+
+    if (darkToggle) {
+      darkToggle.addEventListener('change', () => {
+        const isDark = darkToggle.checked;
+        applyTheme(isDark);
+        try { localStorage.setItem('cardhub_dark_mode', isDark); } catch (e) {}
+      });
+    }
+
+    if (settingsBtn && settingsPanel) {
+      settingsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsPanel.classList.toggle('visible');
+        settingsPanel.setAttribute('aria-hidden', !settingsPanel.classList.contains('visible'));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+          settingsPanel.classList.remove('visible');
+          settingsPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      settingsPanel.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Ctrl/Cmd + S toggles theme
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        const newMode = !body.classList.contains('dark-mode');
+        applyTheme(newMode);
+        try { localStorage.setItem('cardhub_dark_mode', newMode); } catch (err) {}
+      }
+    });
+  </script>
+</body>
+</html>

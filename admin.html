@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardHub Admin - Dashboard</title>
+
+    <link rel="stylesheet" href="mainpage.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        .chart-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        .admin-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            justify-content: center;
+        }
+        .admin-row .chart-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            margin: 0;
+        }
+        
+        .admin-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .admin-nav-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid transparent;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .admin-nav-btn:hover {
+            border-color: var(--accent-color);
+            background-color: var(--hover-bg);
+        }
+        .admin-nav-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .admin-section {
+            display: none;
+        }
+        .admin-section.active {
+            display: block;
+        }
+
+        .card-management-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        #adminCardListContainer {
+            flex: 1;
+            min-width: 400px;
+        }
+        
+        #cardEditorFormContainer {
+            flex: 2;
+            min-width: 500px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 100px;
+        }
+        
+        #cardEditorForm {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-color-light);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--page-bg);
+            color: var(--text-color);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+        
+        #adminCardList {
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        .admin-card-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+        }
+        .admin-card-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+        .admin-card-info {
+            flex-grow: 1;
+        }
+        .admin-card-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .admin-card-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        .admin-card-actions button {
+            margin-left: 0.5rem;
+            padding: 0.5rem 0.8rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: var(--accent-color, #4C51BF);
+            color: white;
+        }
+        .btn-primary:hover {
+            opacity: 0.8;
+        }
+        .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        .btn-danger {
+            background-color: #e53e3e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <img src="images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+            <h1 style="padding-left: 30px; font-family: Arial, Helvetica, sans-serif">CardHub India</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a style="font-weight: 700;">Admin</a></li>
+            <li class="dropdown d-none" id="profileNav" style="position: relative;">
+                <a href="#" id="profileIcon" onclick="toggleDropdown(event)" style="display: flex; align-items: center;">
+                    <img src="images/profile.png" alt="Profile Icon" style="width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 1px solid #ccc;">
+                </a>
+                <ul class="dropdown-menu" id="profileDropdown" style="display:none; position:absolute; right:0; top:40px; background:white; list-style:none; padding:10px; box-shadow:0 4px 8px rgba(0,0,0,0.15); border-radius:8px; min-width:180px;">
+                    <li id="usernameDisplay" style="padding:5px 10px; font-size:14px; color:#555;"></li>
+                    <hr style="margin:8px 0;">
+                    <li><a href="profile.html" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Profile</a></li>
+                    <li><a href="#" onclick="logout()" style="display:block; padding:5px 10px; color:#333; text-decoration:none;">Logout</a></li>
+                </ul>
+            </li>
+            <li>
+                <button id="settingsBtn" style="all:unset;cursor:pointer;">
+                    <img src="images/settings_img.png" alt="Settings Icon" class="settings-icon">
+                </button>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Admin Dashboard</h1>
+            <p>Visualizing CardHub data and managing site content.</p>
+        </div>
+        
+        <nav class="admin-nav">
+            <button class="admin-nav-btn active" id="statsNavBtn">Statistics</button>
+            <button class="admin-nav-btn" id="cardsNavBtn">Card Management</button>
+        </nav>
+
+        <section id="statisticsSection" class="admin-section active">
+            <div class="chart-container">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Card Popularity Scores (from Clicks)</h2>
+                <p style="text-align: center; margin-bottom: 2rem; opacity: 0.8;">Showing the top 15 cards from the 'card_scores' table.</p>
+                <canvas id="popularityChart"></canvas>
+            </div>
+
+            <div class="admin-row">
+                <div class="chart-container">
+                    <h2 style="text-align: center; margin-bottom: 1rem;">Top 10 Search Terms</h2>
+                    <canvas id="searchChart" style="max-height: 400px;"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h2 style="text-align: center; margin-bottom: 1rem;">Top 10 Most Compared Cards</h2>
+                    <canvas id="comparisonChart" style="max-height: 400px;"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cardManagementSection" class="admin-section">
+            <div class="card-management-container">
+            
+                <div id="cardEditorFormContainer">
+                    <h2 id="formTitle">Add New Card</h2>
+                    <form id="cardEditorForm" enctype="multipart/form-data">
+                        <input type="hidden" id="card_id_hidden" name="card_id_hidden">
+                        
+                        <div class="form-group form-group-full">
+                            <label for="card_id">Card ID (Unique, e.g., "axis-atlas")</label>
+                            <input type="text" id="card_id" name="card_id" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Card Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bankName">Bank Name (e.g., "Axis Bank")</label>
+                            <input type="text" id="bankName" name="bankName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bank">Bank ID (e.g., "axis")</label>
+                            <input type="text" id="bank" name="bank" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">Rating (e.g., 4.5)</label>
+                            <input type="number" id="rating" name="rating" step="0.1" min="0" max="5">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="annualFee">Annual Fee (Text, e.g., "₹500 + GST")</label>
+                            <input type="text" id="annualFee" name="annualFee">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="minIncome">Min Income (Number, e.g., 50000)</label>
+                            <input type="number" id="minIncome" name="minIncome" step="1000">
+                        </div>
+                        
+                        <div class="form-group form-group-full">
+                            <label for="joinBonus">Joining Bonus</label>
+                            <textarea id="joinBonus" name="joinBonus" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group form-group-full">
+                            <label for="rewardRate">Reward Rate (Text, e.g., "4% - 18%")</label>
+                            <input type="text" id="rewardRate" name="rewardRate">
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label for="applyLink">Apply Link (Full URL)</label>
+                            <input type="text" id="applyLink" name="applyLink">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Categories (One per line)</label>
+                            <textarea id="category" name="category" placeholder="travel&#10;food&#10;cashback"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="features">Features (One per line)</label>
+                            <textarea id="features" name="features" placeholder="Lounge access&#10;Tiered benefits"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pros">Pros (One per line)</label>
+                            <textarea id="pros" name="pros" placeholder="High rewards&#10;Good welcome bonus"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cons">Cons (One per line)</label>
+                            <textarea id="cons" name="cons" placeholder="High annual fee&#10;Limited partners"></textarea>
+                        </div>
+                        
+                        <div class="form-group form-group-full">
+                            <label for="image_url">Card Image</label>
+                            <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png, image/webp">
+                            <small>Leave blank to keep existing image when editing.</small>
+                            <img id="currentImagePreview" src="" alt="Current Image" style="max-width: 200px; display: none; margin-top: 10px;">
+                        </div>
+                        
+                        <div class="form-group form-group-full" style="flex-direction: row; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary" id="saveCardBtn">Save Card</button>
+                            <button type="button" class="btn btn-danger" id="clearFormBtn">Clear Form</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div id="adminCardListContainer">
+                    <h2>All Cards</h2>
+                    <div id="adminCardList">
+                        </div>
+                </div>
+            
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 CardHub India. Compare credit cards responsibly. Terms and conditions apply.</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Disclaimer: Information is for comparison purposes only. Please verify details with respective banks.</p>
+    </footer>
+    
+    <div class="settings-panel" id="settingsPanel">
+        <h1>Settings</h1>
+        <div class="theme-switch">
+            <label for="darkModeToggle">Dark Mode</label>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <script>
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.toggle('visible');
+        });
+        document.addEventListener('click', (event) => {
+            const isClickInsidePanel = settingsPanel.contains(event.target);
+            const isClickOnButton = settingsBtn.contains(event.target);
+            if (settingsPanel.classList.contains('visible') && !isClickInsidePanel && !isClickOnButton) {
+                settingsPanel.classList.remove('visible');
+            }
+        });
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {    
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+            loadChartData();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const username = localStorage.getItem("username");
+            const profileNav = document.getElementById("profileNav");
+            const usernameDisplay = document.getElementById("usernameDisplay");
+
+            if (username) {
+              profileNav.classList.remove("d-none");
+              usernameDisplay.textContent = username;
+            } else {
+              profileNav.classList.add("d-none");
+            }
+        });
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const dropdown = document.getElementById("profileDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function logout() {
+            localStorage.removeItem("username");
+            window.location.href = "start.html";
+        }
+        window.addEventListener("click", function(e) {
+            const dropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.getElementById("profileIcon");
+            if (profileIcon && dropdown && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+              dropdown.style.display = "none";
+            }
+        });
+
+        const statsBackendUrl = 'http://localhost/cardhub/get_stats.php';
+        const cardBackendUrl = 'http://localhost/cardhub/database.php';
+        
+        let popularityChartInstance;
+        let searchChartInstance;
+        let comparisonChartInstance;
+        
+        const PIE_COLORS = [
+            '#667EEA', '#A3BFFA', '#EBF4FF', '#4C51BF', '#B8C2F2',
+            '#ED64A6', '#FBB6CE', '#FED7E2', '#B83280', '#F687B3'
+        ];
+
+        async function loadChartData() {
+            try {
+                const response = await fetch(statsBackendUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    renderPopularityChart(result.data.popularity);
+                    renderSearchChart(result.data.searches);
+                    renderComparisonChart(result.data.comparisons);
+                } else {
+                    console.error('Failed to load chart data:', result.error);
+                }
+            } catch (error) {
+                console.error('Error fetching chart data:', error);
+            }
+        }
+        
+        function getChartThemeColors() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            return {
+                gridColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                labelColor: isDarkMode ? '#f0f0f0' : '#333'
+            };
+        }
+
+        function renderPopularityChart(data) {
+            const ctx = document.getElementById('popularityChart').getContext('2d');
+            const { gridColor, labelColor } = getChartThemeColors();
+            const labels = data.map(item => item.card_id);
+            const scores = data.map(item => item.score);
+            if (popularityChartInstance) popularityChartInstance.destroy();
+            popularityChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Popularity Score',
+                        data: scores,
+                        backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: labelColor } }, x: { grid: { color: gridColor }, ticks: { color: labelColor } } },
+                    plugins: { legend: { labels: { color: labelColor } } }
+                }
+            });
+        }
+        
+        function renderSearchChart(data) {
+            const ctx = document.getElementById('searchChart').getContext('2d');
+            const { labelColor } = getChartThemeColors();
+            const labels = data.map(item => item.search_term);
+            const counts = data.map(item => parseInt(item.search_count));
+            if (searchChartInstance) searchChartInstance.destroy();
+            searchChartInstance = new Chart(ctx, {
+                type: 'pie',
+                data: { labels: labels, datasets: [{ label: 'Search Count', data: counts, backgroundColor: PIE_COLORS, borderWidth: 1 }] },
+                options: { responsive: true, plugins: { legend: { position: 'top', labels: { color: labelColor } } } }
+            });
+        }
+        
+        function renderComparisonChart(data) {
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+            const { labelColor } = getChartThemeColors();
+            const labels = data.map(item => item.card_id);
+            const counts = data.map(item => parseInt(item.comparison_count));
+            if (comparisonChartInstance) comparisonChartInstance.destroy();
+            comparisonChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: { labels: labels, datasets: [{ label: 'Comparison Count', data: counts, backgroundColor: PIE_COLORS.slice().reverse(), borderWidth: 1 }] },
+                options: { responsive: true, plugins: { legend: { position: 'top', labels: { color: labelColor } } } }
+            });
+        }
+
+
+        const statsNavBtn = document.getElementById('statsNavBtn');
+        const cardsNavBtn = document.getElementById('cardsNavBtn');
+        const statsSection = document.getElementById('statisticsSection');
+        const cardsSection = document.getElementById('cardManagementSection');
+        const cardEditorForm = document.getElementById('cardEditorForm');
+        const adminCardList = document.getElementById('adminCardList');
+        const formTitle = document.getElementById('formTitle');
+        const saveCardBtn = document.getElementById('saveCardBtn');
+        const clearFormBtn = document.getElementById('clearFormBtn');
+        const cardIdInput = document.getElementById('card_id');
+        const cardIdHiddenInput = document.getElementById('card_id_hidden');
+        const currentImagePreview = document.getElementById('currentImagePreview');
+
+        let allCardsData = [];
+
+        statsNavBtn.addEventListener('click', () => {
+            statsSection.classList.add('active');
+            cardsSection.classList.remove('active');
+            statsNavBtn.classList.add('active');
+            cardsNavBtn.classList.remove('active');
+        });
+
+        cardsNavBtn.addEventListener('click', () => {
+            statsSection.classList.remove('active');
+            cardsSection.classList.add('active');
+            statsNavBtn.classList.remove('active');
+            cardsNavBtn.classList.add('active');
+            loadAdminCardList();
+        });
+
+
+        async function loadAdminCardList() {
+            try {
+                const response = await fetch(`${cardBackendUrl}?action=getAllCards`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    allCardsData = result.cards;
+                    renderAdminCardList(allCardsData);
+                } else {
+                    alert('Error loading cards: ' . result.message);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+
+        function renderAdminCardList(cards) {
+            adminCardList.innerHTML = '';
+            if (cards.length === 0) {
+                adminCardList.innerHTML = '<p>No cards found. Add one!</p>';
+                return;
+            }
+            
+            cards.forEach(card => {
+                const cardItem = document.createElement('div');
+                cardItem.className = 'admin-card-item';
+                cardItem.innerHTML = `
+                    <img src="${card.image_url || 'cards/placeholder.jpg'}" alt="${card.name}">
+                    <div class="admin-card-info">
+                        <h4>${card.name}</h4>
+                        <p>${card.card_id} | ${card.bankName}</p>
+                    </div>
+                    <div class="admin-card-actions">
+                        <button class="btn btn-secondary" onclick="editCard('${card.card_id}')">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteCard('${card.card_id}')">Delete</button>
+                    </div>
+                `;
+                adminCardList.appendChild(cardItem);
+            });
+        }
+
+        function arrayToText(arr) {
+            if (!arr || !Array.isArray(arr)) return '';
+            return arr.join('\n');
+        }
+
+        function textToJsonString(text) {
+            if (!text) return JSON.stringify([]);
+            const arr = text.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+            return JSON.stringify(arr);
+        }
+        
+        function editCard(card_id) {
+            const card = allCardsData.find(c => c.card_id === card_id);
+            if (!card) return;
+            
+            formTitle.textContent = `Edit Card: ${card.name}`;
+            saveCardBtn.textContent = 'Update Card';
+            
+            cardIdHiddenInput.value = card.card_id;
+            cardIdInput.value = card.card_id;
+            cardIdInput.readOnly = true;
+            
+            document.getElementById('name').value = card.name || '';
+            document.getElementById('bank').value = card.bank || '';
+            document.getElementById('bankName').value = card.bankName || '';
+            document.getElementById('rating').value = card.rating || '';
+            document.getElementById('annualFee').value = card.annualFee || '';
+            document.getElementById('minIncome').value = card.minIncome || '';
+            document.getElementById('joinBonus').value = card.joinBonus || '';
+            document.getElementById('rewardRate').value = card.rewardRate || '';
+            document.getElementById('applyLink').value = card.applyLink || '';
+            
+            document.getElementById('category').value = arrayToText(card.category);
+            document.getElementById('features').value = arrayToText(card.features);
+            document.getElementById('pros').value = arrayToText(card.pros);
+            document.getElementById('cons').value = arrayToText(card.cons);
+            
+            if (card.image_url) {
+                currentImagePreview.src = card.image_url;
+                currentImagePreview.style.display = 'block';
+            } else {
+                currentImagePreview.style.display = 'none';
+            }
+            
+            document.getElementById('image_url').value = null;
+            
+            window.scrollTo({ top: cardEditorFormContainer.offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function clearForm() {
+            formTitle.textContent = 'Add New Card';
+            saveCardBtn.textContent = 'Save Card';
+            cardEditorForm.reset();
+            cardIdInput.readOnly = false;
+            cardIdHiddenInput.value = '';
+            currentImagePreview.style.display = 'none';
+        }
+        clearFormBtn.addEventListener('click', clearForm);
+
+        cardEditorForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            
+            const isUpdate = !!cardIdHiddenInput.value;
+            const action = isUpdate ? 'updateCard' : 'createCard';
+            formData.append('action', action);
+
+            formData.append('card_id', cardIdInput.value);
+            formData.append('name', document.getElementById('name').value);
+            formData.append('bank', document.getElementById('bank').value);
+            formData.append('bankName', document.getElementById('bankName').value);
+            formData.append('rating', document.getElementById('rating').value);
+            formData.append('annualFee', document.getElementById('annualFee').value);
+            formData.append('minIncome', document.getElementById('minIncome').value);
+            formData.append('joinBonus', document.getElementById('joinBonus').value);
+            formData.append('rewardRate', document.getElementById('rewardRate').value);
+            formData.append('applyLink', document.getElementById('applyLink').value);
+            
+            formData.append('category', textToJsonString(document.getElementById('category').value));
+            formData.append('features', textToJsonString(document.getElementById('features').value));
+            formData.append('pros', textToJsonString(document.getElementById('pros').value));
+            formData.append('cons', textToJsonString(document.getElementById('cons').value));
+            
+            const imageFile = document.getElementById('image_url').files[0];
+            if (imageFile) {
+                formData.append('image_url', imageFile);
+            }
+            
+            try {
+                const response = await fetch(cardBackendUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const text = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(text);
+                } catch (jsonError) {
+                    console.error('Failed to parse JSON response:', text);
+                    alert('A server error occurred. The response was not valid JSON. Check the console for the raw PHP error.');
+                    return;
+                }
+                
+                if (result.success) {
+                    alert(result.message);
+                    clearForm();
+                    loadAdminCardList();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Submit fetch error:', error);
+                alert('A network error occurred. Check the console.');
+            }
+        });
+        
+        async function deleteCard(card_id) {
+            if (!confirm(`Are you sure you want to delete the card "${card_id}"? This cannot be undone.`)) {
+                return;
+            }
+            
+            try {
+                const formData = new FormData();
+                formData.append('action', 'deleteCard');
+                formData.append('card_id', card_id);
+                
+                const response = await fetch(cardBackendUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message);
+                    loadAdminCardList();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Delete error:', error);
+            }
+        }
+        
+        window.deleteCard = deleteCard;
+        window.editCard = editCard;
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChartData();
+        });
+
+    </script>
+</body>
+</html>

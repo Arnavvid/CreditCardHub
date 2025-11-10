@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marriott Bonvoy — Complete Guide (Full) - CardHub India</title>
+
+  <!-- Bootstrap & AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Your site CSS -->
+  <link rel="stylesheet" href="guides.css">
+
+  <style>
+    /* Page-specific small tweaks + animations */
+    .guide-meta { color: var(--muted-text); font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .section-img-placeholder {
+      width: 100%;
+      height: 320px;
+      border-radius: 12px;
+      background: linear-gradient(180deg,#f3f4f6,#e9ecef);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#666;
+      font-weight:700;
+      margin-bottom:1rem;
+    }
+    body.dark-mode .section-img-placeholder { background: linear-gradient(180deg,#222,#2a2a2a); color:#bbb; }
+
+    /* spacing between articles (already present but kept explicit) */
+    .content-section { margin-bottom: 2.75rem; }
+
+    .badge-hyatt { background: linear-gradient(90deg,#0ea5a3,#06b6d4); color:#fff; padding:6px 12px; border-radius:999px; font-weight:700; }
+
+    /* small animation helpers */
+    .fade-in-up { animation: fadeInUp .6s ease both; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .zoom-in { animation: zoomIn .5s ease both; }
+    @keyframes zoomIn {
+      from { opacity:0; transform: scale(.98); }
+      to { opacity:1; transform: scale(1); }
+    }
+
+    .mini-card { border-radius:12px; padding:1rem; background:var(--card-bg); border:1px solid var(--border-color); box-shadow:var(--box-shadow); }
+    .stat { font-weight:700; font-size:1.6rem; display:block; }
+    .meta-note { color:var(--muted-text); font-size:0.95rem; margin-top:0.5rem; }
+
+    /* animate back button gently */
+    .back-btn {
+      display:inline-block;
+      margin-top:24px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .back-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+
+    /* image tilt micro effect */
+    .img-tilt { transition: transform .45s cubic-bezier(.2,.9,.3,1); }
+    .img-tilt:hover { transform: translateY(-6px) scale(1.01); }
+  </style>
+</head>
+<body data-bs-theme="light">
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <img src="../images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+        <h1>CardHub India</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="../mainpage.html">Home</a></li>
+        <li><a href="guides.html" style="font-weight:700;">Guides</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li>
+          <button id="settingsBtn" style="all:unset;cursor:pointer;">
+            <img src="../images/settings_img.png" alt="Settings Icon" class="settings-icon" style="width:28px; height:28px;">
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section text-white text-center py-5">
+    <div class="container">
+    <span class="badge-hyatt">Hotel Guide</span>
+      <h1 class="display-5 fw-bold mt-3" data-aos="fade-down">Marriott Bonvoy — The Ultimate Guide (Full)</h1>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container my-5">
+
+    <!-- Overview -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Overview</h2>
+
+        <!-- image animates in -->
+        <img src="marriott/1.jpeg" 
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:340px; object-fit:cover;"
+             alt="Marriott overview"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in" data-aos-delay="160">
+          Marriott Bonvoy, a globally renowned loyalty program, offers 
+          a gateway to unforgettable experiences for Indian travellers, 
+          catering to diverse preferences and travel goals. It encompasses 
+          a variety of brands under the Marriott International umbrella, 
+          offering an expansive range of hotels and resorts for every type 
+          of traveller. Whether one is planning a luxury retreat, a 
+          business trip, or a budget-friendly vacation, Marriott Bonvoy 
+          accommodates all, making it a popular choice amongst 
+          Indian tourists.
+        </p>
+      </div>
+    </article>
+
+    <!-- Elite Tiers & Benefits Section -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Elite Tiers and Their Benefits</h2>
+
+        <img src="marriott/3.jpeg" 
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:340px; object-fit:cover;"
+             alt="Marriott elite tiers chart"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in" data-aos-delay="160">
+          Marriott Bonvoy’s loyalty program is structured into several elite tiers, each offering a range of exclusive rewards 
+          and privileges to its most loyal members. Here’s a breakdown of every tier and how Indian travellers can make 
+          the most of each level.
+        </p>
+
+        <!-- Member Level -->
+        <h4 class="mt-4" data-aos="fade-right">Member Level</h4>
+        <p data-aos="fade-in">This is the entry-level tier for everyone who joins Marriott Bonvoy.</p>
+        <ul data-aos="fade-in">
+          <li>Earn points per dollar spent on qualifying charges.</li>
+          <li>Access to member-only rates and complimentary Wi-Fi.</li>
+          <li>Mobile check-in and digital key services.</li>
+        </ul>
+
+        <!-- Silver Elite -->
+        <h4 class="mt-4" data-aos="fade-right">Silver Elite</h4>
+        <p data-aos="fade-in">Achieved after <strong>10 qualifying nights</strong> in a calendar year.</p>
+        <ul data-aos="fade-in">
+          <li>Earn 10% bonus points on stays.</li>
+          <li>Priority late checkout (subject to availability).</li>
+          <li>Access to a dedicated elite reservation line.</li>
+          <li>Reservation guarantee for eligible rates.</li>
+        </ul>
+
+        <!-- Gold Elite -->
+        <h4 class="mt-4" data-aos="fade-right">Gold Elite</h4>
+        <p data-aos="fade-in">Reached after <strong>25 qualifying nights</strong> in a calendar year.</p>
+        <ul data-aos="fade-in">
+          <li>Earn 25% bonus points on stays.</li>
+          <li>2 PM late checkout (based on availability).</li>
+          <li>Welcome gift of bonus points upon check-in.</li>
+          <li>Enhanced room upgrades, including select suites (subject to availability).</li>
+        </ul>
+
+        <!-- Platinum Elite -->
+        <h4 class="mt-4" data-aos="fade-right">Platinum Elite</h4>
+        <p data-aos="fade-in">Achieved after <strong>50 qualifying nights</strong> in a calendar year.</p>
+        <ul data-aos="fade-in">
+          <li>Earn 50% bonus points on stays.</li>
+          <li>Guaranteed 4 PM late checkout.</li>
+          <li>Choice of welcome gift (points, breakfast, or amenity).</li>
+          <li>Complimentary lounge access at participating hotels.</li>
+          <li>Room upgrades, including select suites (subject to availability).</li>
+          <li>Annual choice benefit (e.g., gift Silver Elite status to a friend or family member).</li>
+        </ul>
+
+        <!-- Titanium Elite -->
+        <h4 class="mt-4" data-aos="fade-right">Titanium Elite</h4>
+        <p data-aos="fade-in">Attained after <strong>75 qualifying nights</strong> in a calendar year.</p>
+        <ul data-aos="fade-in">
+          <li>Earn 75% bonus points on stays.</li>
+          <li>Additional annual Choice Benefit at 75 nights.</li>
+          <li>48-hour guaranteed room availability.</li>
+          <li>Complimentary United MileagePlus Premier Silver status through RewardsPlus partnership.</li>
+        </ul>
+
+        <!-- Ambassador Elite -->
+        <h4 class="mt-4" data-aos="fade-right">Ambassador Elite</h4>
+        <p data-aos="fade-in">
+          Reached after <strong>100 qualifying nights</strong> and <strong>$23,000 USD qualifying spend</strong> in a calendar year. 
+          This is Marriott Bonvoy’s highest published tier.
+        </p>
+        <ul data-aos="fade-in">
+          <li>Your own personal <strong>Marriott Bonvoy Ambassador</strong> to help with trip planning.</li>
+          <li>24/7 access to the dedicated Ambassador Service desk for assistance.</li>
+          <li><strong>Your24™</strong> — choose your own check-in and check-out times for complete flexibility.</li>
+        </ul>
+
+        <p class="meta-note" data-aos="fade-in" data-aos-delay="80">Data adapted from Marriott Bonvoy official guidance and community resources.</p>
+      </div>
+    </article>
+
+    <!-- Lifetime Elite -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Lifetime Elite Status</h2>
+
+        <img src="marriott/4.jpeg"
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:340px; object-fit:cover;"
+             alt="Lifetime elite"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in">Lifetime tiers are based on cumulative elite nights and qualifying years:</p>
+        <ul data-aos="fade-in">
+          <li>Lifetime Silver: 250 lifetime nights + 5 years of Silver+.</li>
+          <li>Lifetime Gold: 400 lifetime nights + 7 years of Gold+.</li>
+          <li>Lifetime Platinum: 600 lifetime nights + 10 years of Platinum+.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Breakfast Rules -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Breakfast, Welcome Amenities & Lounge Access (Rules)</h2>
+
+        <img src="marriott/x.jpeg"
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:340px; object-fit:cover;"
+             alt="Breakfast rules"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in">
+          Marriott breakfast rules vary significantly across brands and regions. Below are brand groupings — treat these as general guidance and confirm at property level.
+        </p>
+
+        <h4 class="mt-3" data-aos="fade-right">Brands that commonly provide complimentary breakfast to all guests</h4>
+        <ul data-aos="fade-in">
+          <li>Element</li>
+          <li>Fairfield Inn & Suites (except Asia Pacific)</li>
+          <li>Residence Inn</li>
+          <li>SpringHill Suites</li>
+          <li>TownePlace Suites</li>
+        </ul>
+
+        <h4 class="mt-3" data-aos="fade-right">Brands that commonly do NOT offer complimentary breakfast (even to elites)</h4>
+        <ul data-aos="fade-in">
+          <li>Design Hotels</li>
+          <li>EDITION</li>
+          <li>Ritz-Carlton / Ritz-Carlton Reserve</li>
+          <li>Marriott Grand Residence Club, Marriott Vacation Club, Sheraton Vacation Club, Westin Vacation Club</li>
+        </ul>
+
+        <h4 class="mt-3" data-aos="fade-right">Brands that typically provide breakfast as a welcome amenity for elites</h4>
+        <ul data-aos="fade-in">
+          <li>Aloft</li>
+          <li>Autograph Collection (resorts only)</li>
+          <li>JW Marriott (resorts only)</li>
+          <li>Luxury Collection</li>
+          <li>Marriott (resorts only)</li>
+          <li>Renaissance (resorts only)</li>
+          <li>Sheraton</li>
+          <li>St. Regis</li>
+          <li>Tribute Portfolio</li>
+          <li>Westin</li>
+          <li>W</li>
+        </ul>
+
+        <p class="meta-note" data-aos="fade-in">If a lounge is closed or unavailable, many properties offer complimentary breakfast in the restaurant or provide bonus points instead — always confirm at check-in.</p>
+      </div>
+    </article>
+
+    <!-- Executive Lounge -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Executive Lounge Access</h2>
+
+        <img src="marriott/6.jpeg"
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:340px; object-fit:cover;"
+             alt="Executive lounge"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in">
+          Executive lounge access is one of the most valued benefits for elites. Brands that often grant lounge access to Platinum/Titanium/Ambassador elites (usually at hotels, not resorts) include:
+        </p>
+        <ul data-aos="fade-in">
+          <li>JW Marriott</li>
+          <li>Marriott Hotels</li>
+          <li>Sheraton</li>
+          <li>Delta Hotels</li>
+          <li>Le Méridien</li>
+          <li>Westin</li>
+          <li>Autograph Collection</li>
+          <li>Renaissance</li>
+          <li>Courtyard (outside US/Canada in many cases)</li>
+        </ul>
+
+        <p class="meta-note" data-aos="fade-in">Note: Ritz-Carlton lounges are NOT accessible via Bonvoy elite status. If lounge is unavailable, restaurants or points alternatives may apply.</p>
+      </div>
+    </article>
+
+    <!-- STARS & Luminous -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold" data-aos="fade-right">Marriott STARS & Luminous — Luxury Advisor Programs</h2>
+
+        <img src="marriott/7.png" 
+             class="img-fluid rounded mb-3 img-tilt"
+             style="border-radius:12px; height:auto; max-height:320px; object-fit:cover;"
+             alt="STARS & Luminous"
+             data-aos="zoom-in" data-aos-delay="120">
+
+        <p data-aos="fade-in">STARS and Luminous are luxury travel advisor programs that offer extra perks when booking select luxury properties through participating advisors. Perks commonly include:</p>
+        <ul data-aos="fade-in">
+          <li>Daily breakfast for two</li>
+          <li>Complimentary room upgrades (subject to availability)</li>
+          <li>Early check-in / late check-out (subject to availability)</li>
+          <li>Hotel credits or amenity</li>
+          <li>Customized VIP experiences</li>
+        </ul>
+
+        <p class="meta-note" data-aos="fade-in">These perks can usually be combined with Bonvoy elite benefits, but bookings must be made via approved advisors participating in STARS / Luminous to qualify.</p>
+      </div>
+
+      <!-- Back to All Guides button -->
+    <div class="text-center">
+      <a href="guides.html" class="btn btn-primary back-btn" data-aos="fade-up" data-aos-delay="80">← Back to All Guides</a>
+    </div>
+    </article>
+
+    
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 CardHub India. All rights reserved.</p>
+  </footer>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <h4>Settings</h4>
+    <div class="theme-switch" style="margin-top:10px;">
+      <span>Dark Mode</span>
+      <label class="switch" title="Toggle dark mode">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Theme + settings JS -->
+  <script>
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const darkToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        body.classList.add('dark-mode');
+        body.setAttribute('data-bs-theme', 'dark');
+        if (darkToggle) darkToggle.checked = true;
+      } else {
+        body.classList.remove('dark-mode');
+        body.setAttribute('data-bs-theme', 'light');
+        if (darkToggle) darkToggle.checked = false;
+      }
+    }
+
+    // Load stored preference
+    try {
+      const stored = localStorage.getItem('cardhub_dark_mode');
+      applyTheme(stored === 'true');
+    } catch (e) {
+      applyTheme(false);
+    }
+
+    if (darkToggle) {
+      darkToggle.addEventListener('change', () => {
+        const isDark = darkToggle.checked;
+        applyTheme(isDark);
+        try { localStorage.setItem('cardhub_dark_mode', isDark); } catch (e) {}
+      });
+    }
+
+    if (settingsBtn && settingsPanel) {
+      settingsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsPanel.classList.toggle('visible');
+        settingsPanel.setAttribute('aria-hidden', !settingsPanel.classList.contains('visible'));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+          settingsPanel.classList.remove('visible');
+          settingsPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      settingsPanel.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Ctrl/Cmd + S toggles theme
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        const newMode = !body.classList.contains('dark-mode');
+        applyTheme(newMode);
+        try { localStorage.setItem('cardhub_dark_mode', newMode); } catch (err) {}
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hyatt — Complete Guide (World of Hyatt) - CardHub India</title>
+
+  <!-- Bootstrap & AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Your guides CSS -->
+  <link rel="stylesheet" href="guides.css">
+
+  <style>
+    /* page-specific extras (animations + placeholders) */
+    .section-img-placeholder {
+      width: 100%;
+      height: 340px;
+      border-radius: 12px;
+      background: linear-gradient(180deg,#eef2ff,#f6f7fb);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#6b7280;
+      font-weight:700;
+      margin-bottom:1rem;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.06);
+    }
+    body.dark-mode .section-img-placeholder {
+      background: linear-gradient(180deg,#1f2937,#111827);
+      color:#cbd5e1;
+ 
+    }
+
+    .content-section {
+      margin-bottom: 3rem;  /* Adjust as needed: 2rem = moderate, 3rem = more spacious */
+    }
+
+    .badge-hyatt { background: linear-gradient(90deg,#0ea5a3,#06b6d4); color:#fff; padding:6px 12px; border-radius:999px; font-weight:700; }
+
+    /* animated counters */
+    .stat {
+      font-size:2rem;
+      font-weight:700;
+      line-height:1;
+    }
+    .fade-in-up { animation: fadeInUp .6s ease both; }
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(12px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+
+    /* small card accents */
+    .mini-card { border-radius:12px; padding:1rem; background:var(--card-bg); border:1px solid var(--border-color); box-shadow:var(--box-shadow); }
+    .feature-list li { margin-bottom:0.4rem; }
+    .table-award { font-size:0.95rem; }
+
+    /* small responsive tweaks */
+    @media (max-width:768px) {
+      .section-img-placeholder { height:220px; }
+    }
+  </style>
+</head>
+<body data-bs-theme="light">
+
+  <!-- NAV -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <img src="../images/cardhublogoNoText.png" style=" border-radius: 20px; scale: 130%;" alt="CardHub India Logo">
+        <h1>CardHub India</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="../mainpage.html">Home</a></li>
+        <li><a href="guides.html" style="font-weight:700;">Guides</a></li>
+        <li><a href="../about.html">About</a></li>
+
+        <li>
+          <button id="settingsBtn" style="all: unset; cursor: pointer;">
+            <img src="../images/settings_img.png" alt="Settings" class="settings-icon" style="width:28px;height:28px">
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section text-white text-center py-5">
+    <div class="container" data-aos="fade-down">
+      <span class="badge-hyatt">Hotel Guide</span>
+      <h1 class="display-5 fw-bold mt-3">World of Hyatt — Complete Guide</h1>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="container my-5">
+
+    <!-- Overview -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">Overview</h2>
+        <div class="section-img-placeholder" id="img-overview" data-aos="zoom-in">
+          <img src ="hyatt/1.png" alt="Hyatt Overview Screenshot" style="max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 8px 30px rgba(16,24,40,0.06);">
+        </div>
+        
+
+        <p>
+          World of Hyatt is Hyatt’s global loyalty program spanning luxury and lifestyle brands (Park Hyatt, Andaz, Grand Hyatt, Hyatt Regency, Hyatt Place, Hyatt House, and more).
+          Members earn points on eligible room charges and select incidentals, and can redeem points for free nights, room upgrades, dining, Spa & Experiences, and more.
+        </p>
+
+        <div class="row mt-3 g-3">
+          <div class="col-md-4 mini-card" data-aos="fade-right">
+            <div class="stat">60+</div>
+            <div class="text-muted">Countries</div>
+          </div>
+          <div class="col-md-4 mini-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat">1,000+</div>
+            <div class="text-muted">Properties worldwide (approx.)</div>
+          </div>
+          <div class="col-md-4 mini-card" data-aos="fade-left" data-aos-delay="200">
+            <div class="stat">Discover • Explorist • Globalist</div>
+            <div class="text-muted">Elite tiers (summary)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Hotel Brands -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">Hotel Brands (Selected)</h2>
+        <p class="text-muted">Hyatt’s portfolio spans luxury to select-service brands.</p>
+
+        <div class="row g-3">
+          <div class="col-sm-6 col-lg-4">
+            <ul class="feature-list">
+              <li>Park Hyatt</li>
+              <li>Andaz</li>
+              <li>Alila</li>
+              <li>Grand Hyatt</li>
+              <li>Hyatt Regency</li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <ul class="feature-list">
+              <li>Hyatt Centric</li>
+              <li>Hyatt Place</li>
+              <li>Hyatt House</li>
+              <li>Thompson Hotels</li>
+              <li>Hyatt Ziva / Zilara (resorts)</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </article>
+
+    <!-- World of Hyatt basics -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">World of Hyatt — Key Concepts</h2>
+        <ul>
+          <li><strong>Eligible charges:</strong> qualifying room rate, taxes, and eligible incidentals (dining, spa at participating hotels).</li>
+          <li><strong>Base earning:</strong> points per USD spent on eligible charges (varies by rate and promotions).</li>
+          <li><strong>Points+Cash:</strong> Mixed redemptions allow partial points + cash bookings.</li>
+        </ul>
+
+        <div class="row mt-3 g-3">
+          <div class="col-md-6" data-aos="fade-right">
+            <h5 class="fw-semibold">How to Earn Points</h5>
+            <ul>
+              <li>Stay at Hyatt properties and provide your World of Hyatt number at booking / check-in.</li>
+              <li>Use co-branded cards or transfer partners where available (country dependent).</li>
+              <li>Participate in Hyatt promotions (bonus points, extra elite nights).</li>
+              <li>Book experiences (e.g., dining, spa) at participating Hyatt hotels charged to your room.</li>
+            </ul>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <h5 class="fw-semibold">How to Redeem Points</h5>
+            <ul>
+              <li>Book standard award nights by category or dynamic pricing.</li>
+              <li>Use points for upgrades, dining, spa, and Hyatt experiences.</li>
+              <li>Consider Points + Cash for flexibility when short on points.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Award Chart Example -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">Award Chart — Example (illustrative)</h2>
+        <p class="text-muted">Below is a representative example table (replace with official chart if you have it). Uses simple categories for clarity.</p>
+
+        <div class="table-responsive" data-aos="fade-up" data-aos-delay="100">
+          <table class="table table-bordered table-award">
+            <thead class="table-light">
+              <tr>
+                <th>Category</th>
+                <th>Standard Night (points)</th>
+                <th>Peak Night (points)</th>
+                <th>Off-Peak (points)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Category 1</td><td>5,000</td><td>6,000</td><td>4,500</td></tr>
+              <tr><td>Category 2</td><td>8,000</td><td>10,000</td><td>7,000</td></tr>
+              <tr><td>Category 3</td><td>12,000</td><td>15,000</td><td>10,000</td></tr>
+              <tr><td>Category 4</td><td>20,000</td><td>25,000</td><td>16,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meta-note">Note: Hyatt uses both category-based and dynamic pricing depending on property — always check the booking engine for exact redemption costs.</p>
+      </div>
+    </article>
+
+    <!-- Elite tiers section -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">Elite Tiers & Benefits</h2>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-4" data-aos="flip-left">
+            <div class="mini-card">
+              <h5 class="m-0">Discoverist</h5>
+              <p class="text-muted small mb-2">Entry-tier perks</p>
+              <ul class="small">
+                <li>Premium internet</li>
+                <li>Preferred rooms</li>
+                <li>Complimentary late checkout (subject to availability)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+            <div class="mini-card">
+              <h5 class="m-0">Explorist</h5>
+              <p class="text-muted small mb-2">Mid-tier perks</p>
+              <ul class="small">
+                <li>Bonus points on stays</li>
+                <li>Upgrades where available</li>
+                <li>Milestone benefits (select rewards)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+            <div class="mini-card">
+              <h5 class="m-0">Globalist</h5>
+              <p class="text-muted small mb-2">Top-tier perks</p>
+              <ul class="small">
+                <li>Room upgrades, including suites (subject to availability)</li>
+                <li>Club lounge access where offered</li>
+                <li>Late checkout & enhanced benefits</li>
+                <li>Free parking / welcome amenities at select hotels</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="meta-note mt-3">Exact night thresholds and benefits vary by year & promotion. Some markets have additional ways to earn nights (e.g., credit card stays, targeted offers).</p>
+      </div>
+    </article>
+
+  <!-- Partnerships & transfer partners (two equal columns + image placeholder) -->
+  <article class="card p-4 content-section" data-aos="fade-up">
+    <div class="card-body">
+      <h2 class="fw-bold" data-aos="fade-right">Partners & Transfer Options</h2>
+
+      <p data-aos="fade-in">
+        World of Hyatt collaborates with multiple airline partners and other travel partners. In selected countries you can also convert bank points into Hyatt points — check your home-market partners for exact transfer ratios and rules.
+      </p>
+
+      <!-- Two equal columns for partner list -->
+      <div class="row mt-3 g-3">
+        <div class="col-md-6" data-aos="fade-right" data-aos-delay="140">
+          <ul class="mb-0">
+            <li>Aeromexico</li>
+            <li>Air China</li>
+            <li>Air France / KLM</li>
+            <li>All Nippon Airways (ANA)</li>
+            <li>American Airlines</li>
+            <li>Asiana Airlines</li>
+            <li>British Airways</li>
+            <li>Cathay Pacific</li>
+            <li>China Airlines</li>
+            <li>China Eastern Airlines</li>
+            <li>China Southern Airlines</li>
+            <li>Delta Air Lines</li>
+            <li>Emirates</li>
+          </ul>
+        </div>
+
+        <div class="col-md-6" data-aos="fade-left" data-aos-delay="140">
+          <ul class="mb-0">
+            <li>Etihad Airways</li>
+            <li>Hawaiian Airlines</li>
+            <li>Japan Airlines</li>
+            <li>Korean Air</li>
+            <li>LanChile Airlines</li>
+            <li>Qantas Airways</li>
+            <li>Qatar Airways</li>
+            <li>Royal Brunei Airlines</li>
+            <li>Singapore Airlines</li>
+            <li>Southwest Airlines</li>
+            <li>Thai Airways International</li>
+            <li>United Airlines</li>
+            <li>Virgin Atlantic Airways</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12" data-aos="fade-in" data-aos-delay="180">
+          <p class="meta-note">
+            Typical transfer rule (where available): often 5 World of Hyatt points → 2 airline miles, minimum conversion 5,000 points, and conversions in increments of 1,250 points. Some promotions add a bonus (e.g., 5,000-mile bonus when converting 50,000+ points). Always verify the exact ratio and minimum on the official World of Hyatt partner page before initiating transfers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+
+    <!-- Family pooling & points sharing -->
+    <article class="card p-4 content-section" data-aos="fade-up">
+      <div class="card-body">
+        <h2 class="fw-bold">Points Pooling & Family Use</h2>
+
+        <p>
+          Hyatt supports options to share and pool points in many programs (check account settings). Practical points:
+        </p>
+        <ul>
+          <li>Household pooling: some family members can combine points for redemptions (subject to account rules).</li>
+          <li>Book on behalf of others: you can redeem points for stays for friends/family using your account.</li>
+          <li>Gift nights and certificates may be available through promotions or status rewards.</li>
+        </ul>
+
+        <p class="meta-note">Always verify the official World of Hyatt terms for eligibility and any regional restrictions.</p>
+      </div>
+
+      <div class="text-center mt-4">
+          <a href="guides.html" class="btn btn-primary">← Back to All Guides</a>
+        </div>
+      </div>
+    </article>
+
+    
+
+    
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 CardHub India. All rights reserved.</p>
+  </footer>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <h4>Settings</h4>
+    <div class="theme-switch" style="margin-top:10px;">
+      <span>Dark Mode</span>
+      <label class="switch" title="Toggle dark mode">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // initialize AOS
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+    // settings + theme logic (same pattern used on other pages)
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const darkToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        body.classList.add('dark-mode');
+        body.setAttribute('data-bs-theme', 'dark');
+        if (darkToggle) darkToggle.checked = true;
+      } else {
+        body.classList.remove('dark-mode');
+        body.setAttribute('data-bs-theme', 'light');
+        if (darkToggle) darkToggle.checked = false;
+      }
+    }
+
+    // restore stored theme
+    try {
+      const stored = localStorage.getItem('cardhub_dark_mode');
+      applyTheme(stored === 'true');
+    } catch (e) {
+      applyTheme(false);
+    }
+
+    if (darkToggle) {
+      darkToggle.addEventListener('change', () => {
+        const isDark = darkToggle.checked;
+        applyTheme(isDark);
+        try { localStorage.setItem('cardhub_dark_mode', isDark); } catch (e) {}
+      });
+    }
+
+    if (settingsBtn && settingsPanel) {
+      settingsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsPanel.classList.toggle('visible');
+        settingsPanel.setAttribute('aria-hidden', !settingsPanel.classList.contains('visible'));
+      });
+
+      // close on outside click
+      document.addEventListener('click', (e) => {
+        if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+          settingsPanel.classList.remove('visible');
+          settingsPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      settingsPanel.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // keyboard shortcut Ctrl/Cmd+S toggles theme
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        const newMode = !body.classList.contains('dark-mode');
+        applyTheme(newMode);
+        try { localStorage.setItem('cardhub_dark_mode', newMode); } catch (err) {}
+      }
+    });
+  </script>
+</body>
+</html>

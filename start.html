@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Credit Cards — CardHub India</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+:root {
+  --w: 460px;
+  --h: 260px;
+  --accent-start: #2A7B9B;
+  --accent-end: #57C785;
+  --anim-duration: 700ms;
+  --anim-ease: cubic-bezier(.16,.84,.24,1);
+}
+
+.navbar-custom {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 0.8rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar-custom .navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: #2A7B9B !important;
+}
+.navbar-custom .navbar-brand img {
+  height: 50px;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+.navbar-custom .nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  transition: color 0.25s, transform 0.25s;
+}
+.navbar-custom .nav-link:hover {
+  color: #2A7B9B !important;
+  transform: translateY(-2px);
+}
+.navbar-custom .btn-gradient {
+  background: linear-gradient(90deg, #2A7B9B, #57C785);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  transition: all 0.3s;
+}
+.navbar-custom .btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, "Segoe UI", Roboto, Helvetica, Arial;
+  background: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
+  color: #fefefe;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 4rem 8%;
+  flex-wrap: wrap;
+}
+
+.intro {
+  flex: 1;
+  max-width: 520px;
+}
+
+.intro h1 {
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1.12;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(90deg, #ffffff, #e8fff4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro p.lead {
+  color: #f4f9ff;
+  font-size: 1.08rem;
+  margin-bottom: 1rem;
+  opacity: 0.98;
+}
+
+.intro .sub {
+  color: #e6fff4;
+  opacity: 0.95;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.v-carousel {
+  width: var(--w);
+  height: var(--h);
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.v-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.v-item {
+  position: absolute;
+  left: 50%;
+  width: var(--w);
+  height: var(--h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transform: translate3d(-50%, 0, 0) scale(0.8);
+  
+  transition: transform var(--anim-duration) var(--anim-ease),
+              opacity calc(var(--anim-duration)/1.2) var(--anim-ease),
+              filter calc(var(--anim-duration)/1.2) var(--anim-ease);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.v-item img {
+  width: 92%;
+  height: 92%;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 18px 38px rgba(8, 30, 60, .32);
+  transition: transform 500ms var(--anim-ease);
+}
+
+.v-item.prev {
+  transform: translate3d(-50%, -52%, 0) scale(0.96);
+  opacity: 0.7;
+  filter: brightness(0.9);
+  z-index: 5;
+}
+.v-item.current {
+  transform: translate3d(-50%, 0, 0) scale(1);
+  opacity: 1;
+  z-index: 20;
+  pointer-events: auto;
+}
+.v-item.next {
+  transform: translate3d(-50%, 52%, 0) scale(0.96);
+  opacity: 0.7;
+  filter: brightness(0.9);
+  z-index: 5;
+}
+
+.v-item.current:hover img { transform: scale(1.03); }
+
+@media (max-width: 992px) {
+  :root { --w: 320px; --h: 200px; }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 3rem 1.5rem;
+  }
+  .intro h1 { font-size: 2rem; }
+}
+@media (max-width: 576px) {
+  :root { --w: 300px; --h: 180px; }
+  .navbar-custom .navbar-brand h1 { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="mainpage.html">
+      <img src="images/cardhublogoNoText.png" alt="CardHub Logo" onerror="this.src='https://placehold.co/60x50?text=Logo'">
+      <span>CardHub India</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="btn btn-gradient ms-lg-3" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="btn btn-gradient ms-lg-2" href="signup.html">Sign Up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="intro text-lg-start text-center">
+    <h1>Find the Perfect Credit Card for You</h1>
+    <p class="lead">
+      Discover, compare, and choose from a variety of credit cards tailored to your lifestyle - from cashback to travel rewards and premium benefits.
+    </p>
+    <p class="sub">
+      Explore our curated selection of top credit cards designed to fit your unique needs. Whether you're looking for rewards, low interest rates, or exclusive perks, we've got you covered.
+    </p>
+  </div>
+
+  <div class="v-carousel" id="vCarousel">
+    <div class="v-track" id="vTrack"></div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){ 
+  const names = [ 
+    'hsbc-travel-one','axis-atlas','hdfc-marriott-bonvoy','amex-platinum-travel', 
+    'swiggy-hdfc-bank','hdfc-bank-millennia','airtel-axis-bank','bpcl-sbi-octane',
+    'hdfc-infinia','icici-emralde-private','hdfc-bank-regalia-forexplus' 
+  ];
+
+  const ext = '.jpg';
+  const $track = $('#vTrack');
+  const total = names.length;
+  let current = 0;
+  let timer = null;
+  const delay = 1500;
+  let paused = false;
+
+  names.forEach((name, i) => {
+    const src = `cards/${name}${ext}`;
+    const $wrap = $(`<div class="v-item" data-index="${i}"></div>`);
+    const $img = $(`<img src="${src}" alt="${name.replace(/-/g, ' ')}">`);
+    $img.on('error', function() {
+      this.src = `https://placehold.co/400x250/003f7f/ffffff?text=${encodeURIComponent(name.replace(/-/g,' '))}`;
+    });
+    $wrap.append($img);
+    $track.append($wrap);
+  });
+
+  const $items = $track.find('.v-item');
+
+  function refresh() {
+    $items.removeClass('prev current next');
+    const prev = (current - 1 + total) % total;
+    const next = (current + 1) % total;
+    $items.eq(prev).addClass('prev');
+    $items.eq(current).addClass('current');
+    $items.eq(next).addClass('next');
+  }
+
+  function moveDown() {
+    current = (current + 1) % total;
+    refresh();
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(() => { if (!paused) moveDown(); }, delay);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  $track.on('mouseenter', () => paused = true);
+  $track.on('mouseleave', () => paused = false);
+
+  let startY = 0;
+  $track.on('touchstart', e => startY = e.originalEvent.touches[0].clientY);
+  $track.on('touchend', e => {
+    const endY = e.originalEvent.changedTouches[0].clientY;
+    if (Math.abs(startY - endY) > 40) {
+      if (startY > endY) moveDown();
+      else current = (current - 1 + total) % total, refresh();
+    }
+  });
+
+  $(document).on('keydown', e => {
+    if (e.key === 'ArrowDown') moveDown();
+    if (e.key === 'ArrowUp') { current = (current - 1 + total) % total; refresh(); }
+  });
+
+  refresh();
+  start();
+});
+</script>
+</body>
+</html>
