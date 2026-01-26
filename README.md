@@ -23,7 +23,7 @@ CardHub India is a robust web application designed to help users discover, compa
 
 
 ## Project Structure
-- start.html: The landing page with high-end animations and entry points.
+- start.html: The landing page.
 - mainpage.html: The core application interface for searching and comparing cards.
 - admin.html: The administrative control panel and analytics hub.
 - database.php: The important backend script handling all database interactions and table setups.
@@ -31,30 +31,38 @@ CardHub India is a robust web application designed to help users discover, compa
 - profile.html: User account and settings management.
 
 ## Setup
-- Clone the Repository: git clone https://github.com/yourusername/repo-name.git
+### Clone the Repository: 
 
-- Server Environment:
-  -- Move the project folder to your local server directory (e.g., htdocs for XAMPP or www for WAMP).
+  ```git clone https://github.com/yourusername/repo-name.git```
 
-- Ensure PHP and MySQL are active.
+### Server Environment:
+  
+  Move the project folder to your local server directory (e.g., htdocs for XAMPP or www for WAMP).
 
-- Database Configuration:
+  Ensure PHP and MySQL are active.
 
-Create a database named cardhub in PHPMyAdmin.
+### Database Configuration:
 
-Open database.php and verify the $servername, $username, and $password match your local SQL credentials.
+  Create a database named cardhub in PHPMyAdmin.
 
-The script is designed to automatically create the necessary tables (auth_users, credit_cards, card_scores, etc.) upon the first connection.
+  Open ```database.php``` and verify the ```$servername```, ```$username```, and ```$password``` match your local SQL credentials.
 
-Launch:
+  The script is designed to automatically create the necessary tables (auth_users, credit_cards, card_scores, etc.) upon the first connection.
 
-Open start.html in your browser.
+### Launch:
 
-📝 Usage
-User Login: Register a new account via signup.html or log in via login.html.
+  Open ```start.html``` in your browser.
 
-Admin Access:
-Email: admin@123
-Password: 12345
+### Usage:
+  
+  User Login: 
+  Register a new account via signup.html or log in via login.html.
 
-Comparing: Click the comparison icon on card results to add them to your tray, then hit "Compare" to see the side-by-side view.
+
+  Admin Access:
+  
+  - Email: admin@123
+  
+  - Password: 12345
+
+
